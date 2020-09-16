@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let allergySchema, illnessSchema, postSchema, symptomSchema;
+let illnessSchema, postSchema, symptomSchema;
 
 const petSchema = new Schema({
 	alias: { type: String },
