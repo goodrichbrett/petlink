@@ -11,11 +11,11 @@ const petSchema = new Schema({
 	breed: { type: String },
 	gender: { type: String },
 	age: { type: Number },
-	allergies: [allergySchema],
-	illnesses: [illnessSchema],
+	illnesses: [{ type: Schema.Types.ObjectId, ref: 'Illness' }],
 	posts: [postSchema],
 	symptoms: [symptomSchema],
 	ownerId: { type: String },
+	followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 
 module.exports = mongoose.model('Pet', petSchema);

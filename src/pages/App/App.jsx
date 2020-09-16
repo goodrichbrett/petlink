@@ -30,6 +30,7 @@ class App extends Component {
 					exact
 					path="/"
 					render={() => (
+						//  change to render LandingPage component
 						<main>
 							<h1>Landing page</h1>
 						</main>
