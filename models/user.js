@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
 		password: String,
 		isVet: Boolean,
 		avatar: String,
-		address: String,
+		location: Object,
 		phoneNumber: String, // should not be displayed on UI publicly
 		pets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }],
 		following: [
