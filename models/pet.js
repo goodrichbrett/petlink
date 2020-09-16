@@ -1,7 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let postSchema;
+const commentSchema = new Schema({
+	commenter: String,
+	content: String,
+});
+
+const postSchema = new Schema({
+	title: {
+		type: String,
+		required: true,
+	},
+	content: {
+		type: String,
+		required: true,
+	},
+	tags: Array,
+	date: Date,
+	comments: [commentSchema],
+	archived: Boolean,
+	private: Boolean,
+});
 
 const symptomSchema = new Schema({
 	name: { type: String, required: true },
