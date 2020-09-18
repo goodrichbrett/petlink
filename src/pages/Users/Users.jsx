@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { getAllUsers } from "../../services/userService";
+import React, { Component } from 'react';
+import { getAllUsers } from '../../services/userService';
 
 class Users extends Component {
-  state = {
-    users: [],
-  };
+	state = {
+		users: [],
+	};
 
-  async componentDidMount() {
-    const users = await getAllUsers();
-    this.setState({ users });
-  }
+	async componentDidMount() {
+		const users = await getAllUsers();
+		this.setState({ users });
+	}
 
-  render() {
-    return (
-      <>
-        <h1>Hello. This is a list of all the users.</h1>
-        {this.state.users.map((user) => (
-          <p>{user.name}</p>
-        ))}
-      </>
-    );
-  }
+	render() {
+		return (
+			<>
+				<h1>Hello. This is a list of all the users.</h1>
+				{this.state.users.map((user) => (
+					<a href={`/users/${user._id}`}>{user.name}</a>
+				))}
+			</>
+		);
+	}
 }
 
 export default Users;
