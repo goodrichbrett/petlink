@@ -14,7 +14,7 @@ class Users extends Component {
 
 	render() {
 		return (
-			<>
+			<div id='userList'>
 				<h1>Hello. This is a list of all the users.</h1>
 				{this.state.users.map((user) => (
 					<Link
@@ -23,7 +23,7 @@ class Users extends Component {
 						<p>{user.name}</p>
 					</Link>
 				))}
-			</>
+			</div>
 		);
 	}
 }
