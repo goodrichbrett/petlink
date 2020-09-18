@@ -5,8 +5,8 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import authService from '../../services/authService';
 import Users from '../Users/Users';
-import Pet from '../../pages/Pet/Pet'
-import EditPet from '../../pages/EditPet/EditPet'
+import Pet from '../../pages/Pet/Pet';
+import EditPet from '../../pages/EditPet/EditPet';
 import './App.css';
 import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
@@ -39,7 +39,12 @@ class App extends Component {
 			() => this.props.history.push('/')
 		);
 	};
-	
+
+	// [] Call petsAPI services to get all followed pets
+	// async componentDidMount() {
+	// 	const followedPets = await petsAPI.getPets();
+	// 	this.setState({followedPets});
+	// 	console.log(this.state)
 	// }
 
 	async componentDidMount() {
@@ -53,69 +58,81 @@ class App extends Component {
 		return (
 			<>
 				<NavBar user={user} handleLogout={this.handleLogout} />
-				<div id='main-container'>
-				<Route
-					exact
-					path="/"
-					render={() =>
-						user ? (
-							<div>
-							<OwnerFeed user={this.state.user} />
-							</ div>
-						) : (
-							<Redirect to="/login" />
-						)
-					}
-				/>
-				<Route
-					exact
-					path="/signup"
-					render={({ history }) => (
-						<Signup
-							history={history}
-							handleSignupOrLogin={this.handleSignupOrLogin}
-						/>
-					)}
-				/>
-				<Route
-					exact
-					path="/login"
-					render={({ history }) => (
-						<Login
-							history={history}
-							handleSignupOrLogin={this.handleSignupOrLogin}
-						/>
-					)}
-				/>
-				<Route
-					exact
-					path="/users"
-					render={() => (user ? <Users /> : <Redirect to="/login" />)}
-				/>
-				<Route
-					exact
-					path="/pet"
-					render={({ history }) => ( user ?
-						<Pet
-							history={history}
-							user={user}
-						/>
-						:
-						<Redirect to="/login" />
-					)}
-				/>
-				<Route
-					exact
-					path="/edit-pet"
-					render={({ history, location }) => ( user ?
-						<EditPet
-							history={history}
-							location={location}
-						/>
-						:
-						<Redirect to="/login" />
-					)}
-				/>
+				<div id="main-container">
+					<Route
+						exact
+						path="/"
+						render={() =>
+							user ? (
+								<div>
+									<OwnerFeed user={this.state.user} />
+								</div>
+							) : (
+								<Redirect to="/login" />
+							)
+						}
+					/>
+					<Route
+						exact
+						path="/signup"
+						render={({ history }) => (
+							<Signup
+								history={history}
+								handleSignupOrLogin={this.handleSignupOrLogin}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/login"
+						render={({ history }) => (
+							<Login
+								history={history}
+								handleSignupOrLogin={this.handleSignupOrLogin}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/users"
+						render={() =>
+							user ? <Users /> : <Redirect to="/login" />
+						}
+					/>
+					<Route
+						exact
+						path="/pet"
+						render={({ history }) =>
+							user ? (
+								<Pet history={history} user={user} />
+							) : (
+								<Redirect to="/login" />
+							)
+						}
+					/>
+					<Route
+						exact
+						path="/edit-pet"
+						render={({ history, location }) =>
+							user ? (
+								<EditPet
+									history={history}
+									location={location}
+								/>
+							) : (
+								<Redirect to="/login" />
+							)
+						}
+					/>
+					<Route
+						path="/pets/add"
+						render={() => (
+							<AddPet
+								user={this.state.user}
+								handleAddPet={this.handleAddPet}
+							/>
+						)}
+					/>
 				</div>
 				<Route
 					path="/pets/add"
