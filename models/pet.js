@@ -28,6 +28,7 @@ const symptomSchema = new Schema({
 	tags: Array,
 	archived: Boolean,
 	private: Boolean,
+	comments: [commentSchema],
 });
 
 const petSchema = new Schema({
