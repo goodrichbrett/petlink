@@ -25,3 +25,28 @@ export function getPets(pets) {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+export function getOne(pet) {
+	return fetch(
+		`${BASE_URL}${pet._id}`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}
+
+export function update(pet) {
+	return fetch(
+		`${BASE_URL}${pet._id}`,
+		{
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+				Authorization: 'Bearer ' + tokenService.getToken(),
+			},
+			body: JSON.stringify(pet),
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}

@@ -97,7 +97,11 @@ class App extends Component {
 						path="/pet"
 						render={({ history }) =>
 							user ? (
-								<Pet history={history} user={user} />
+								<Pet
+									history={history}
+									user={user}
+									pets={this.state.pets}
+								/>
 							) : (
 								<Redirect to="/login" />
 							)
@@ -116,15 +120,6 @@ class App extends Component {
 								<Redirect to="/login" />
 							)
 						}
-					/>
-					<Route
-						path="/pets/add"
-						render={() => (
-							<AddPet
-								user={this.state.user}
-								handleAddPet={this.handleAddPet}
-							/>
-						)}
 					/>
 					<Route
 						path="/pets/add"

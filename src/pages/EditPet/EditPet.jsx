@@ -22,7 +22,6 @@ class EditPet extends Component {
 	handleSubmit = async (e) => {
 		e.preventDefault();
 		this.props.handleUpdatePet(this.state.formData);
-		//petservice call
 		//history.push("/pet"); pass pet id?
 	};
 
