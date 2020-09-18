@@ -5,6 +5,8 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import authService from '../../services/authService';
 import Users from '../Users/Users';
+import Pet from '../../pages/Pet/Pet'
+import EditPet from '../../pages/EditPet/EditPet'
 import './App.css';
 
 class App extends Component {
@@ -26,6 +28,7 @@ class App extends Component {
 		return (
 			<>
 				<NavBar user={user} handleLogout={this.handleLogout} />
+				<div id='main-container'>
 				<Route
 					exact
 					path="/"
@@ -61,6 +64,31 @@ class App extends Component {
 					path="/users"
 					render={() => (user ? <Users /> : <Redirect to="/login" />)}
 				/>
+				<Route
+					exact
+					path="/pet"
+					render={({ history }) => ( user ?
+						<Pet
+							history={history}
+							user={user}
+						/>
+						:
+						<Redirect to="/login" />
+					)}
+				/>
+				<Route
+					exact
+					path="/edit-pet"
+					render={({ history, location }) => ( user ?
+						<EditPet
+							history={history}
+							location={location}
+						/>
+						:
+						<Redirect to="/login" />
+					)}
+				/>
+				</div>
 			</>
 		);
 	}
