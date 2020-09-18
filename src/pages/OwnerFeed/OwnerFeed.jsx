@@ -7,8 +7,10 @@ class OwnerFeed extends Component {
     return ( 
       <>
       <h1>News Feed</h1>
-      {/* App.js will pass another prop once Brett finishes the service file which will hold an array of populated pet Data. */}
-      <SummaryCard />
+      {this.props.followedPets.map(pet => (
+        // Update SummaryCard component once we have more information on a pets Post.
+        <SummaryCard key={pet._id} pet={pet}/>
+      ))}
       </>
      );
   }
