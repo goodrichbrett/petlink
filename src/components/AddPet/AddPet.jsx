@@ -105,6 +105,17 @@ class AddPet extends Component {
 								id="age"
 							></Input>
 						</FormGroup>
+						<FormGroup>
+							<Label for="avatar">Pet Picture Link</Label>
+							<Input
+								onChange={this.handleChange}
+								value={this.state.formData.avatar}
+								type="text"
+								name="avatar"
+								id="avatar"
+								required
+							></Input>
+						</FormGroup>
 						<Button type="submit">Submit</Button>
 					</Form>
 				</div>
