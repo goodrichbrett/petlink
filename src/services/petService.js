@@ -16,9 +16,9 @@ export function create(pet) {
 	).then((res) => res.json());
 }
 
-export function getPets(pets) {
+export function getPets() {
 	return fetch(
-		`${BASE_URL}${pets}`,
+		`${BASE_URL}`,
 		{
 			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
 		},

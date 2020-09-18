@@ -34,7 +34,7 @@ const Pet = (props) => {
 	return (
 		<div>
 			<h1>Pet Page</h1>
-			<p>{props.pet}</p>
+			<p>{props.pet.name}</p>
 		</div>
 	);
 };

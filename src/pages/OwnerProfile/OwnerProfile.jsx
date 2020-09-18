@@ -22,6 +22,7 @@ class OwnerProfile extends Component {
 							pathname: '/pet',
 							pet: { pet },
 						}}
+						pet={pet}
 					>
 						<SummaryCard pet={pet} />
 					</Link>
