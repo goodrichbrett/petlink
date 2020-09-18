@@ -11,7 +11,7 @@ import './App.css';
 import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
-import OwnerProfile from '../OwnerProfile/OwnerProfile'
+import OwnerProfile from '../OwnerProfile/OwnerProfile';
 
 class App extends Component {
 	state = {
@@ -133,20 +133,21 @@ class App extends Component {
 							/>
 						)}
 					/>
+					<Route
+						path="/pets/add"
+						render={() => (
+							<AddPet
+								user={this.state.user}
+								handleAddPet={this.handleAddPet}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/user"
+						render={() => <OwnerProfile user={this.state.user} />}
+					/>
 				</div>
-				<Route
-					path="/pets/add"
-					render={() => (
-						<AddPet
-							user={this.state.user}
-							handleAddPet={this.handleAddPet}
-						/>
-					)}
-				/>
-				<Route
-				exact path="/user" render={() => (
-					<OwnerProfile user={this.state.user}/>
-				)} />
 			</>
 		);
 	}
