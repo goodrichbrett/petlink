@@ -9,8 +9,14 @@ const userSchema = new mongoose.Schema(
 		email: { type: String, required: true, lowercase: true, unique: true },
 		password: String,
 		isVet: Boolean,
-		avatar: String,
-		location: Object,
+		avatar: {
+			type: String,
+			default: null,
+		},
+		location: {
+			type: Object,
+			default: null,
+		},
 		phoneNumber: String, // should not be displayed on UI publicly
 		pets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }],
 		following: [
