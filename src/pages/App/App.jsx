@@ -11,6 +11,7 @@ import './App.css';
 import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
+import OwnerProfile from '../OwnerProfile/OwnerProfile'
 
 class App extends Component {
 	state = {
@@ -38,11 +39,7 @@ class App extends Component {
 			() => this.props.history.push('/')
 		);
 	};
-	// [] Call petsAPI services to get all followed pets
-	// async componentDidMount() {
-	// 	const followedPets = await petsAPI.getPets();
-	// 	this.setState({followedPets});
-	// 	console.log(this.state)
+	
 	// }
 
 	async componentDidMount() {
@@ -129,6 +126,10 @@ class App extends Component {
 						/>
 					)}
 				/>
+				<Route
+				exact path="/user" render={() => (
+					<OwnerProfile user={this.state.user}/>
+				)} />
 			</>
 		);
 	}
