@@ -100,10 +100,11 @@ class App extends Component {
 					<Route
 						exact
 						path="/pet"
-						render={({ history }) =>
+						render={({ history, location }) =>
 							user ? (
 								<Pet
 									history={history}
+									location={location}
 									user={user}
 									pets={this.state.pets}
 								/>

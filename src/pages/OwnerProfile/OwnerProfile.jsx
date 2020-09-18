@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SummaryCard from '../../components/SummaryCard/SummaryCard';
 import { Link } from 'react-router-dom';
 import * as petAPI from '../../services/petService';
+import Pet from '../Pet/Pet';
 
 class OwnerProfile extends Component {
 	state = {};
@@ -17,15 +18,7 @@ class OwnerProfile extends Component {
 
 				<h2>Pets</h2>
 				{this.props.pets.map((pet) => (
-					<Link
-						to={{
-							pathname: '/pet',
-							pet: { pet },
-						}}
-						pet={pet}
-					>
-						<SummaryCard pet={pet} />
-					</Link>
+					<SummaryCard pet={pet} />
 				))}
 
 				<h2>Following</h2>
