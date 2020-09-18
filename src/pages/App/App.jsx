@@ -123,16 +123,16 @@ class App extends Component {
 							)
 						}
 					/>
+					<Route
+						path="/pets/add"
+						render={() => (
+							<AddPet
+								user={this.state.user}
+								handleAddPet={this.handleAddPet}
+							/>
+						)}
+					/>
 				</div>
-				<Route
-					path="/pets/add"
-					render={() => (
-						<AddPet
-							user={this.state.user}
-							handleAddPet={this.handleAddPet}
-						/>
-					)}
-				/>
 			</>
 		);
 	}
