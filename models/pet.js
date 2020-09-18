@@ -28,6 +28,7 @@ const symptomSchema = new Schema({
 	tags: Array,
 	archived: Boolean,
 	private: Boolean,
+	comments: [commentSchema],
 });
 
 const petSchema = new Schema({
@@ -41,7 +42,7 @@ const petSchema = new Schema({
 	illnesses: [{ type: Schema.Types.ObjectId, ref: 'Illness' }],
 	posts: [postSchema],
 	symptoms: [symptomSchema],
-	ownerId: { type: String },
+	ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
 	followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 

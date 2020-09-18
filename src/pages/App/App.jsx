@@ -8,10 +8,15 @@ import Users from '../Users/Users';
 import Pet from '../../pages/Pet/Pet'
 import EditPet from '../../pages/EditPet/EditPet'
 import './App.css';
+import AddPet from '../../components/AddPet/AddPet';
+import * as petAPI from '../../services/petService';
+import OwnerFeed from '../OwnerFeed/OwnerFeed';
 
 class App extends Component {
 	state = {
 		user: authService.getUser(),
+		pets: [],
+		followedPets: [],
 	};
 
 	handleLogout = () => {
@@ -23,6 +28,29 @@ class App extends Component {
 		this.setState({ user: authService.getUser() });
 	};
 
+	handleAddPet = async (newPetData) => {
+		const newPet = await petAPI.create(newPetData);
+		newPet.addedBy = this.state.user._id;
+		this.setState(
+			(state) => ({
+				pets: [...state.pets, newPet],
+			}),
+			() => this.props.history.push('/')
+		);
+	};
+	// [] Call petsAPI services to get all followed pets
+	// async componentDidMount() {
+	// 	const followedPets = await petsAPI.getPets();
+	// 	this.setState({followedPets});
+	// 	console.log(this.state)
+	// }
+
+	async componentDidMount() {
+		const pets = await petAPI.getPets(this.state.pets);
+		this.setState({ pets });
+		console.log(this.state);
+	}
+
 	render() {
 		const { user } = this.state;
 		return (
@@ -32,12 +60,13 @@ class App extends Component {
 				<Route
 					exact
 					path="/"
-					render={() => (
-						//  change to render LandingPage component
-						<main>
-							<h1>Landing page</h1>
-						</main>
-					)}
+					render={() =>
+						user ? (
+							<OwnerFeed user={this.state.user} />
+						) : (
+							<Redirect to="/login" />
+						)
+					}
 				/>
 				<Route
 					exact
@@ -89,6 +118,14 @@ class App extends Component {
 					)}
 				/>
 				</div>
+					path="/pets/add"
+					render={() => (
+						<AddPet
+							user={this.state.user}
+							handleAddPet={this.handleAddPet}
+						/>
+					)}
+				/>
 			</>
 		);
 	}
