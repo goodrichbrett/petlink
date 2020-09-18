@@ -6,10 +6,12 @@ import Login from '../Login/Login';
 import authService from '../../services/authService';
 import Users from '../Users/Users';
 import './App.css';
+import OwnerFeed from '../OwnerFeed/OwnerFeed';
 
 class App extends Component {
 	state = {
 		user: authService.getUser(),
+		followedPets : [],
 	};
 
 	handleLogout = () => {
@@ -21,6 +23,13 @@ class App extends Component {
 		this.setState({ user: authService.getUser() });
 	};
 
+	// [] Call petsAPI services to get all followed pets
+	// async componentDidMount() {
+	// 	const followedPets = await petsAPI.getPets();
+	// 	this.setState({followedPets});
+	// 	console.log(this.state)
+	// }
+
 	render() {
 		const { user } = this.state;
 		return (
@@ -30,10 +39,7 @@ class App extends Component {
 					exact
 					path="/"
 					render={() => (
-						//  change to render LandingPage component
-						<main>
-							<h1>Landing page</h1>
-						</main>
+						user ? <OwnerFeed user={this.state.user}/> : <Redirect to="/login" />
 					)}
 				/>
 				<Route
