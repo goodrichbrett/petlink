@@ -31,6 +31,12 @@ const NavBar = ({ user, handleLogout }) => {
 									Log Out
 								</a>
 							</li>
+							{ user ? (
+								<li>
+									{/* this will be replaced with a real user image */}
+									<img src="https://picsum.photos/50/50"/>
+								</li>
+							) : ''}
 						</ul>
 					</div>
 				</nav>
