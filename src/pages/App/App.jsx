@@ -6,10 +6,13 @@ import Login from '../Login/Login';
 import authService from '../../services/authService';
 import Users from '../Users/Users';
 import './App.css';
+import AddPet from '../../components/AddPet/AddPet';
+import * as petAPI from '../../services/petService';
 
 class App extends Component {
 	state = {
 		user: authService.getUser(),
+		pets: [],
 	};
 
 	handleLogout = () => {
@@ -19,6 +22,17 @@ class App extends Component {
 
 	handleSignupOrLogin = () => {
 		this.setState({ user: authService.getUser() });
+	};
+
+	handleAddPet = async (newPetData) => {
+		const newPet = await petAPI.create(newPetData);
+		newPet.addedBy = this.state.user._id;
+		this.setState(
+			(state) => ({
+				pets: [...state.pets, newPet],
+			}),
+			() => this.props.history.push('/')
+		);
 	};
 
 	render() {
@@ -60,6 +74,16 @@ class App extends Component {
 					exact
 					path="/users"
 					render={() => (user ? <Users /> : <Redirect to="/login" />)}
+				/>
+				<Route
+					exact
+					path="/pets/add"
+					render={() => (
+						<AddPet
+							user={this.state.user}
+							handleAddTodo={this.handleAddPet}
+						/>
+					)}
 				/>
 			</>
 		);
