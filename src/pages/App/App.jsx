@@ -62,7 +62,9 @@ class App extends Component {
 					path="/"
 					render={() =>
 						user ? (
+							<div>
 							<OwnerFeed user={this.state.user} />
+							</ div>
 						) : (
 							<Redirect to="/login" />
 						)
