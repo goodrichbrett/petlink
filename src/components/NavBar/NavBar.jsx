@@ -1,69 +1,79 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom'
+import {
+	Collapse,
+	Navbar,
+	NavbarToggler,
+	Nav,
+	NavItem,
+	NavLink,
+	NavbarText
+  } from 'reactstrap';
+import './NavBar.css'
 
 const NavBar = ({ user, handleLogout }) => {
+	const [isOpen, setIsOpen] = useState(false);
+
+	const toggle = () => setIsOpen(!isOpen);
+  
+
 	return (
 		<>
 			{user ? (
-				<nav>
-					<div className="nav-wrapper">
-						<ul id="nav-mobile" className="right">
-							<li>
-								<a href={user._id} className="nav-link">
-									Welcome, {user.name}
-								</a>
-							</li>
-							<li>
-								<a href="/pets/add" className="nav-link">
-									Add Pet
-								</a>
-							</li>
-							<li>
-								<a href="/users" className="nav-link">
-									Users
-								</a>
-							</li>
-							<li>
-								<a
-									href=" "
-									className="nav-link"
-									onClick={handleLogout}
-								>
-									Log Out
-								</a>
-							</li>
-							{user ? (
-								<li>
-									{/* this will be replaced with a real user image */}
-									<img src="https://picsum.photos/50/50" />
-								</li>
-							) : (
-								''
-							)}
-						</ul>
-					</div>
-				</nav>
+				<div>
+					<Navbar color="light" light expand="md">
+					{/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
+					<NavbarToggler onClick={toggle} />
+					<Collapse isOpen={isOpen} navbar>
+						<Nav className="mr-auto" navbar>
+						<NavItem>
+							<NavLink href='/'>Welcome, {user.name}</NavLink>
+						</NavItem>
+						{/* The following link should be removed once add pets is added to owner profile */}
+						<NavItem>
+							<NavLink href="/pets/add">Add Pet</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href="/users">Users</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href=" " onClick={handleLogout}>Log Out</NavLink>
+						</NavItem>
+							</Nav>
+							<NavbarText>
+								{/* this will be replaced with a real user image */}
+								<Link 
+								to={{
+									pathname: '/user',
+									state: {user}
+								}}
+								><img src={user.avatar ? user.avatar : "https://picsum.photos/50/50"} id='user-avatar'/>
+								</Link>
+							</NavbarText>
+						</Collapse>
+					</Navbar>
+				</div>
 			) : (
-				<nav>
-					<div className="nav-wrapper">
-						<ul id="nav-mobile" className="right">
-							<li>
-								<a href="/login" className="nav-link">
-									Log In
-								</a>
-							</li>
-							<li>
-								<a href="/users" className="nav-link">
-									Users
-								</a>
-							</li>
-							<li>
-								<a href="/signup" className="nav-link">
-									Sign Up
-								</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
+				<div>
+					<Navbar color="light" light expand="md">
+					{/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
+					<NavbarToggler onClick={toggle} />
+					<Collapse isOpen={isOpen} navbar>
+						<Nav className="mr-auto" navbar>
+						<NavItem>
+							<NavLink href='/'>Welcome to PetLink!</NavLink>
+						</NavItem>
+						{/* The following link should be removed once add pets is added to owner profile */}
+						<NavItem>
+							<NavLink href="/login">Log In</NavLink>
+						</NavItem>
+						<NavItem>
+							<NavLink href="/signup">Sign Up</NavLink>
+						</NavItem>
+							</Nav>
+						</Collapse>
+					</Navbar>
+				</div>
 			)}
 		</>
 	);
