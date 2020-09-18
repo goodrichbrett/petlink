@@ -40,17 +40,10 @@ class App extends Component {
 		);
 	};
 
-	// [] Call petsAPI services to get all followed pets
-	// async componentDidMount() {
-	// 	const followedPets = await petsAPI.getPets();
-	// 	this.setState({followedPets});
-	// 	console.log(this.state)
-	// }
-
 	async componentDidMount() {
 		const pets = await petAPI.getPets(this.state.pets);
-		this.setState({ pets });
-		console.log(this.state);
+		const followedPets = await petAPI.getPets(this.state.user.following);
+		this.setState({ pets, followedPets });
 	}
 
 	render() {
