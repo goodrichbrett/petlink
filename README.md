@@ -54,3 +54,7 @@ In most cases, online articles can shed light on what might be happening with yo
 ## Trello Board
 
 https://trello.com/b/RMwu1OSV/petlink-20
+
+## The Team
+
+![Image of Team](./public/teamimage.png)
