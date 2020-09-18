@@ -20,10 +20,6 @@ import * as petAPI from '../../services/petService';
 // 	render() {
 // 		return (
 // 			<>
-// 				{/* {this.state.pets.map((pet) => (
-// 					<PetCard pet={pet} />
-// 				))} */}
-// 				{/* <p>{this.state.pet.name}</p> */}
 // 				<h1>pet page</h1>
 // 			</>
 // 		);
