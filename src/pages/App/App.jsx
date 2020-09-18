@@ -118,6 +118,7 @@ class App extends Component {
 					)}
 				/>
 				</div>
+				<Route
 					path="/pets/add"
 					render={() => (
 						<AddPet
