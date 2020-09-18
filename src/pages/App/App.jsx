@@ -127,15 +127,6 @@ class App extends Component {
 						)}
 					/>
 					<Route
-						path="/pets/add"
-						render={() => (
-							<AddPet
-								user={this.state.user}
-								handleAddPet={this.handleAddPet}
-							/>
-						)}
-					/>
-					<Route
 						exact
 						path="/user"
 						render={() => <OwnerProfile user={this.state.user} />}
