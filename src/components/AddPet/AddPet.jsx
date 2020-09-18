@@ -102,3 +102,5 @@ class AddPet extends Component {
 		);
 	}
 }
+
+export default AddPet;
