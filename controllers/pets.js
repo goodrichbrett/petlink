@@ -4,6 +4,8 @@ const User = require('../models/user');
 module.exports = {
 	create,
 	index,
+	delete: deletePet,
+	update,
 };
 
 // function create(req, res) {
@@ -30,4 +32,18 @@ function index(req, res) {
 		console.log('req', req.user);
 		res.status(200).json(pets);
 	});
+}
+
+function deletePet(req, res) {
+	Pet.findOneAndDelete(req.params.id).then((pet) => {
+		res.status(200).json(pet);
+	});
+}
+
+function update(req, res) {
+	Pet.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
+		(pet) => {
+			res.status(200).json(pet);
+		}
+	);
 }
