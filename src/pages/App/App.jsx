@@ -43,6 +43,12 @@ class App extends Component {
 	// 	console.log(this.state)
 	// }
 
+	async componentDidMount() {
+		const pets = await petAPI.getPets(this.state.pets);
+		this.setState({ pets });
+		console.log(this.state);
+	}
+
 	render() {
 		const { user } = this.state;
 		return (
@@ -90,7 +96,7 @@ class App extends Component {
 					render={() => (
 						<AddPet
 							user={this.state.user}
-							handleAddTodo={this.handleAddPet}
+							handleAddPet={this.handleAddPet}
 						/>
 					)}
 				/>

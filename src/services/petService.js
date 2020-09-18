@@ -15,3 +15,13 @@ export function create(pet) {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+export function getPets(pets) {
+	return fetch(
+		`${BASE_URL}${pets}`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}

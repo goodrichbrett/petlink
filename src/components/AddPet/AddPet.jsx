@@ -77,7 +77,7 @@ class AddPet extends Component {
 							<Label for="breed">Breed</Label>
 							<Input
 								onChange={this.handleChange}
-								value={this.state.formData.type}
+								value={this.state.formData.breed}
 								type="text"
 								name="breed"
 								id="breed"
@@ -89,11 +89,21 @@ class AddPet extends Component {
 								name="gender"
 								id="gender"
 								onChange={this.handleChange}
-								value={this.state.formData.type}
+								value={this.state.formData.gender}
 							>
 								<option value="male">Male</option>
 								<option value="female">Female</option>
 							</select>
+						</FormGroup>
+						<FormGroup>
+							<Label for="age">Age</Label>
+							<Input
+								onChange={this.handleChange}
+								value={this.state.formData.age}
+								type="number"
+								name="age"
+								id="age"
+							></Input>
 						</FormGroup>
 						<Button type="submit">Submit</Button>
 					</Form>
