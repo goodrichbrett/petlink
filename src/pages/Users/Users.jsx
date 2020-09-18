@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getAllUsers } from '../../services/userService';
+import { Link } from 'react-router-dom';
 
 class Users extends Component {
 	state = {
@@ -16,7 +17,11 @@ class Users extends Component {
 			<>
 				<h1>Hello. This is a list of all the users.</h1>
 				{this.state.users.map((user) => (
-					<a href={`/users/${user._id}`}>{user.name}</a>
+					<Link
+						to={{ pathname: `/users/${user._id}`, user: { user } }}
+					>
+						<p>{user.name}</p>
+					</Link>
 				))}
 			</>
 		);
