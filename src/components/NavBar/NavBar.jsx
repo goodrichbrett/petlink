@@ -8,7 +8,7 @@ const NavBar = ({ user, handleLogout }) => {
 					<div className="nav-wrapper">
 						<ul id="nav-mobile" className="right">
 							<li>
-								<a href=" " className="nav-link">
+								<a href={user._id} className="nav-link">
 									Welcome, {user.name}
 								</a>
 							</li>
@@ -31,12 +31,14 @@ const NavBar = ({ user, handleLogout }) => {
 									Log Out
 								</a>
 							</li>
-							{ user ? (
+							{user ? (
 								<li>
 									{/* this will be replaced with a real user image */}
-									<img src="https://picsum.photos/50/50"/>
+									<img src="https://picsum.photos/50/50" />
 								</li>
-							) : ''}
+							) : (
+								''
+							)}
 						</ul>
 					</div>
 				</nav>
