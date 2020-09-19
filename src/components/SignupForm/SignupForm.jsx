@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import authService from "../../services/authService";
+import { Button } from 'reactstrap';
 
 class SignupForm extends Component {
   state = {
@@ -41,6 +42,7 @@ class SignupForm extends Component {
       <div>
         <h3>Sign Up</h3>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
+        <label htmlFor="name">Name</label><br/>
           <input
             type="text"
             autoComplete="off"
@@ -48,8 +50,8 @@ class SignupForm extends Component {
             value={name}
             name="name"
             onChange={this.handleChange}
-          />
-          <label htmlFor="name">Name</label>
+          /><br/><br/>
+          <label htmlFor="email">Email</label><br/>
           <input
             type="text"
             autoComplete="off"
@@ -57,8 +59,8 @@ class SignupForm extends Component {
             value={email}
             name="email"
             onChange={this.handleChange}
-          />
-          <label htmlFor="email">Email</label>
+          /><br/><br/>
+          <label htmlFor="password">Password</label><br/>
           <input
             type="password"
             autoComplete="off"
@@ -66,8 +68,8 @@ class SignupForm extends Component {
             value={password}
             name="password"
             onChange={this.handleChange}
-          />
-          <label htmlFor="password">Password</label>
+          /><br/><br/>
+          <label htmlFor="confirm">Confirm Password</label><br/>
           <input
             type="password"
             autoComplete="off"
@@ -75,10 +77,8 @@ class SignupForm extends Component {
             value={passwordConf}
             name="passwordConf"
             onChange={this.handleChange}
-          />
-          <label htmlFor="confirm">Confirm Password</label>
-          <button disabled={this.isFormInvalid()}>Sign Up</button>
-          &nbsp;&nbsp;
+          /><br/><br/>
+          <Button color="primary" disabled={this.isFormInvalid()}>Sign Up</Button><br/><br/>
           <Link to="/">Cancel</Link>
         </form>
       </div>

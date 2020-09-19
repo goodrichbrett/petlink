@@ -54,7 +54,7 @@ class LoginPage extends Component {
             name="pw"
             onChange={this.handleChange}
           /><br/><br/>
-          <Button>Log In</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Button color="primary">Log In</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
           <Link to="/signup">
             <Button>Sign Up</Button>
