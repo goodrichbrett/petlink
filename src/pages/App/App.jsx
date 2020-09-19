@@ -12,7 +12,7 @@ import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
 import OwnerProfile from '../OwnerProfile/OwnerProfile';
-import LandingContent from '../../components/Landing/Landing'
+import LandingContent from '../../components/Landing/Landing';
 
 class App extends Component {
 	state = {
@@ -38,6 +38,16 @@ class App extends Component {
 				pets: [...state.pets, newPet],
 			}),
 			() => this.props.history.push('/')
+		);
+	};
+
+	handleUpdatePet = async (updatedPetData) => {
+		const updatedPet = await petAPI.update(updatedPetData);
+		const newPetsArray = this.state.pets.map((p) =>
+			p._id === updatedPet._id ? updatedPet : p
+		);
+		this.setState({ pets: newPetsArray }, () =>
+			this.props.history.push('/')
 		);
 	};
 
@@ -122,6 +132,7 @@ class App extends Component {
 								<EditPet
 									history={history}
 									location={location}
+									handleUpdatePet={this.handleUpdatePet}
 								/>
 							) : (
 								<Redirect to="/login" />

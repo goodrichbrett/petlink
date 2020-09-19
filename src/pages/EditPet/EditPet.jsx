@@ -27,6 +27,7 @@ class EditPet extends Component {
 
 	formRef = React.createRef();
 	render() {
+		// -------- Update only works when data is not pre filled
 		return (
 			<Form ref={this.formRef} onSubmit={this.handleSubmit}>
 				<FormGroup>
