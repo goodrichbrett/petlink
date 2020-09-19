@@ -139,6 +139,7 @@ class App extends Component {
 					<Route
 						exact
 						path="/user"
+						render={() => <OwnerProfile user={this.state.user} />}
 						render={({ location }) => (
 							<OwnerProfile
 								user={this.state.user}
