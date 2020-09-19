@@ -20,24 +20,23 @@ const NavBar = ({ user, handleLogout }) => {
 	return (
 		<>
 			{user ? (
-				<div>
 					<Navbar color="light" light expand="md">
 					{/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
 					<NavbarToggler onClick={toggle} />
 					<Collapse isOpen={isOpen} navbar>
 						<Nav className="mr-auto" navbar>
 						<NavItem>
-							<NavLink href='/'>Welcome, {user.name}</NavLink>
+							<NavLink id='navItem' href='/'>Welcome, {user.name}</NavLink>
 						</NavItem>
 						{/* The following link should be removed once add pets is added to owner profile */}
 						<NavItem>
-							<NavLink href="/pets/add">Add Pet</NavLink>
+							<NavLink id='navItem' href="/pets/add">Add Pet</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href="/users">Users</NavLink>
+							<NavLink id='navItem' href="/users">Users</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href=" " onClick={handleLogout}>Log Out</NavLink>
+							<NavLink id='navItem' href=" " onClick={handleLogout}>Log Out</NavLink>
 						</NavItem>
 							</Nav>
 							<NavbarText>
@@ -52,9 +51,7 @@ const NavBar = ({ user, handleLogout }) => {
 							</NavbarText>
 						</Collapse>
 					</Navbar>
-				</div>
 			) : (
-				<div>
 					<Navbar color="light" light expand="md">
 					{/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
 					<NavbarToggler onClick={toggle} />
@@ -75,7 +72,6 @@ const NavBar = ({ user, handleLogout }) => {
 							</NavbarText>
 						</Collapse>
 					</Navbar>
-				</div>
 			)}
 		</>
 	);
