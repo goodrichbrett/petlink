@@ -20,8 +20,7 @@ class EditPet extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    // pass down a handleUpdateProfile(this.state.formData) from props.
-    // this.props.handleUpdatePet(this.state.formData);
+    this.props.handleUpdateUser(this.state.formData);
     //history.push("/pet"); pass pet id?
   };
 
@@ -38,7 +37,7 @@ class EditPet extends Component {
                 onChange={this.handleChange}
                 type="text"
                 name="name"
-                value={this.state.user.name}
+                value={this.state.formData.name}
               />
             </FormGroup>
             <FormGroup>
@@ -103,7 +102,7 @@ class EditPet extends Component {
                 onChange={this.handleChange}
                 type="text"
                 name="name"
-                value={this.state.user.name}
+                value={this.state.formData.name}
               />
             </FormGroup>
             <FormGroup>
@@ -112,7 +111,16 @@ class EditPet extends Component {
                 onChange={this.handleChange}
                 type="text"
                 name="email"
-                value={this.state.user.email}
+                value={this.state.formData.email}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="phoneNumber">Phone Number</Label>
+              <Input
+                onChange={this.handleChange}
+                type="text"
+                name="phoneNumber"
+                value={this.state.formData.phoneNumber}
               />
             </FormGroup>
             <FormGroup>
@@ -121,7 +129,7 @@ class EditPet extends Component {
                 onChange={this.handleChange}
                 type="text"
                 name="avatar"
-                value={this.state.user.avatar}
+                value={this.state.formData.avatar}
               />
             </FormGroup>
             <FormGroup>
@@ -130,7 +138,7 @@ class EditPet extends Component {
                 onChange={this.handleChange}
                 type="select"
                 name="isVet"
-                value={this.state.user.isVet}
+                value={this.state.formData.isVet}
               >
                 <option selected={this.state.user.isVet ? true : false}>
                   Yes

@@ -12,6 +12,7 @@ export function getAllUsers() {
 }
 
 export function update(user) {
+	console.log('update hit')
 	return fetch(
 		`${BASE_URL}${user._id}`,
 		{
