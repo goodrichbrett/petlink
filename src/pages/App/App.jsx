@@ -78,7 +78,7 @@ class App extends Component {
 									/>
 								</div>
 							) : (
-								<Redirect to="/login" />
+								<LandingContent />
 							)
 						}
 					/>
