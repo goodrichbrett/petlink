@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './PetCard.css';
 import {
 	Card, CardImg, CardText, CardBody,
-	CardTitle, CardSubtitle, Button
+	CardTitle, Button
   } from 'reactstrap';
 
 const PetCard = ({ pet }) => {
