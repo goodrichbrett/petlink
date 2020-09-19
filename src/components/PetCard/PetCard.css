@@ -1,0 +1,17 @@
+#petcard {
+    width: 100%;
+    max-width: 500px;
+}
+
+#petcard ul {
+    margin: 0;
+}
+
+#cardButtons {
+    width: 100%;
+}
+
+#cardButtons>Button {
+    width: 50%;
+    border-radius: 0;
+}
