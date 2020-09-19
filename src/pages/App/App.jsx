@@ -41,8 +41,10 @@ class App extends Component {
 	};
 
 	async componentDidMount() {
-		const pets = await petAPI.getPets(this.state.pets);
+		const pets = await petAPI.getPets();
+		// this needs to be fixed, once we have the follow pet feature.
 		const followedPets = await petAPI.getPets(this.state.user.following);
+		console.log('followed pets', this.state.user);
 		this.setState({ pets, followedPets });
 	}
 
@@ -58,7 +60,10 @@ class App extends Component {
 						render={() =>
 							user ? (
 								<div>
-									<OwnerFeed user={this.state.user} />
+									<OwnerFeed
+										user={this.state.user}
+										followedPets={this.state.followedPets}
+									/>
 								</div>
 							) : (
 								<Redirect to="/login" />
@@ -95,9 +100,14 @@ class App extends Component {
 					<Route
 						exact
 						path="/pet"
-						render={({ history }) =>
+						render={({ history, location }) =>
 							user ? (
-								<Pet history={history} user={user} />
+								<Pet
+									history={history}
+									location={location}
+									user={user}
+									pets={this.state.pets}
+								/>
 							) : (
 								<Redirect to="/login" />
 							)
@@ -130,6 +140,14 @@ class App extends Component {
 						exact
 						path="/user"
 						render={() => <OwnerProfile user={this.state.user} />}
+						render={({ location }) => (
+							<OwnerProfile
+								user={this.state.user}
+								pets={this.state.pets}
+								followedPets={this.state.followedPets}
+								location={location}
+							/>
+						)}
 					/>
 				</div>
 			</>
