@@ -3,6 +3,7 @@ const User = require('../models/user');
 module.exports = {
 	index,
 	showProfile,
+	update,
 };
 
 function index(req, res) {
@@ -15,4 +16,12 @@ function showProfile(req, res) {
 	User.findById(req.params.id).then((userInfo) => {
 		res.json(userInfo);
 	});
+}
+
+function update(req, res) {
+	User.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
+		(user) => {
+			res.status(200).json(user);
+		}
+	);
 }
