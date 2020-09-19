@@ -6,7 +6,7 @@ class OwnerFeed extends Component {
   render() { 
     return ( 
       <>
-      <h1>News Feed</h1>
+      <h1 style={{ margin: '0 0 1em 0', textAlign: 'center' }}>News Feed</h1>
       {this.props.followedPets.map(pet => (
         // Update SummaryCard component once we have more information on a pets Post.
         <SummaryCard key={pet._id} pet={pet}/>
