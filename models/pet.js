@@ -11,6 +11,7 @@ const postSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	postType: String, //behavior or symptom
 	content: {
 		type: String,
 		required: true,
@@ -20,15 +21,6 @@ const postSchema = new Schema({
 	comments: [commentSchema],
 	archived: Boolean,
 	private: Boolean,
-});
-
-const symptomSchema = new Schema({
-	name: { type: String, required: true },
-	date: Date,
-	tags: Array,
-	archived: Boolean,
-	private: Boolean,
-	comments: [commentSchema],
 });
 
 const petSchema = new Schema({
@@ -41,7 +33,6 @@ const petSchema = new Schema({
 	age: { type: Number },
 	illnesses: [{ type: Schema.Types.ObjectId, ref: 'Illness' }],
 	posts: [postSchema],
-	symptoms: [symptomSchema],
 	ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
 	followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
