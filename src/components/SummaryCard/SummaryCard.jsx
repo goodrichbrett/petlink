@@ -6,6 +6,7 @@ const SummaryCard = ({ pet }) => {
 	return (
 			<Link id='summaryCard'
 				to={{
+					//this should redirect to /post from the news feed and to /pet from the owner profile
 					pathname: '/pet',
 					state: { pet },
 				}}
