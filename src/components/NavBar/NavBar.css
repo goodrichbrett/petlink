@@ -2,3 +2,11 @@
     border-radius: 50%;
     border: solid 2px gray;
 }
+
+#navItem {
+    color: black;
+}
+
+#navItem:hover {
+    color: #7DCE82;
+}
