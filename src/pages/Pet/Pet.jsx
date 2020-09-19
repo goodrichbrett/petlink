@@ -29,8 +29,8 @@ import * as petAPI from '../../services/petService';
 const Pet = (props) => {
 	return (
 		<div>
-			<h1>Pet Page</h1>
-			<p>{props.location.state.pet.name}</p>
+			<h1>{props.location.state.pet.name}'s Details</h1>
+			<PetCard pet={props.location.state.pet} />
 		</div>
 	);
 };
