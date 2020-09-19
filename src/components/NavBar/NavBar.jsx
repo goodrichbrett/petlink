@@ -63,14 +63,16 @@ const NavBar = ({ user, handleLogout }) => {
 						<NavItem>
 							<NavLink href='/'>Welcome to PetLink!</NavLink>
 						</NavItem>
-						{/* The following link should be removed once add pets is added to owner profile */}
-						<NavItem>
-							<NavLink href="/login">Log In</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="/signup">Sign Up</NavLink>
-						</NavItem>
 							</Nav>
+							<NavbarText>
+								{/* this will be replaced with a real user image */}
+								<Link 
+								to={{
+									pathname: '/login'
+								}}
+								><img src="https://picsum.photos/50/50" id='user-avatar'/>
+								</Link>
+							</NavbarText>
 						</Collapse>
 					</Navbar>
 				</div>

@@ -12,6 +12,7 @@ import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
 import OwnerProfile from '../OwnerProfile/OwnerProfile';
+import LandingContent from '../../components/Landing/Landing'
 
 class App extends Component {
 	state = {
@@ -66,7 +67,7 @@ class App extends Component {
 									/>
 								</div>
 							) : (
-								<Redirect to="/login" />
+								<LandingContent />
 							)
 						}
 					/>

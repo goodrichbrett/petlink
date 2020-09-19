@@ -5,4 +5,8 @@ main {
 #main-container {
   display: flex;
   justify-content: center;
+  margin: 10vmin;
+  background-color: #f8f9fa;
+  padding: 1em;
+  border-radius: 1em;
 }
