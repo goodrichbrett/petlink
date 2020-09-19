@@ -10,6 +10,7 @@ import EditPet from '../../pages/EditPet/EditPet';
 import './App.css';
 import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
+import * as userAPI from '../../services/userService'
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
 import OwnerProfile from '../OwnerProfile/OwnerProfile';
 import EditUser from '../EditUser/EditUser'
@@ -48,6 +49,14 @@ class App extends Component {
 			p._id === updatedPet._id ? updatedPet : p
 		);
 		this.setState({ pets: newPetsArray }, () =>
+			this.props.history.push('/')
+		);
+	};
+
+	handleUpdateUser = async (updatedUserData) => {
+		const updatedUser = await userAPI.update(updatedUserData);
+		console.log('update user', updatedUser)
+		this.setState({ user: updatedUser }, () =>
 			this.props.history.push('/')
 		);
 	};
@@ -167,6 +176,7 @@ class App extends Component {
 						render={({ location }) => (
 							<EditUser
 								location={location}
+								handleUpdateUser={this.handleUpdateUser}
 							/>
 						)}
 					/>

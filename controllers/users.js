@@ -4,6 +4,7 @@ module.exports = {
 	index,
 	showProfile,
 	update,
+	delete: deleteUser
 };
 
 function index(req, res) {
@@ -19,9 +20,17 @@ function showProfile(req, res) {
 }
 
 function update(req, res) {
+	console.log('controller hit')
+	console.log('params',req.params.id)
 	User.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
 		(user) => {
 			res.status(200).json(user);
 		}
 	);
+}
+
+function deleteUser(req, res) {
+	User.findOneAndDelete(req.params.id).then((pet) => {
+		res.status(200).json(pet);
+	});
 }
