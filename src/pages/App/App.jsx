@@ -14,6 +14,7 @@ import * as userAPI from '../../services/userService'
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
 import OwnerProfile from '../OwnerProfile/OwnerProfile';
 import EditUser from '../EditUser/EditUser'
+import AddPost from '../../pages/AddPost/AddPost'
 import LandingContent from '../../components/Landing/Landing';
 
 class App extends Component {
@@ -60,6 +61,10 @@ class App extends Component {
 			this.props.history.push('/')
 		);
 	};
+
+	handleAddPost = (postData) => {
+
+	}
 
 	async componentDidMount() {
 		const pets = await petAPI.getPets();
@@ -177,6 +182,16 @@ class App extends Component {
 							<EditUser
 								location={location}
 								handleUpdateUser={this.handleUpdateUser}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/post/add"
+						render={({ location }) => (
+							<AddPost
+								location={location}
+								handleAddPost={this.handleAddPost}
 							/>
 						)}
 					/>

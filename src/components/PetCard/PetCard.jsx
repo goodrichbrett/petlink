@@ -14,7 +14,7 @@ const PetCard = ({ pet }) => {
 					<CardImg top width="100%" src={pet.avatar} alt="Card image cap" />
 					<CardBody>
 						<div style={{display:'flex', justifyContent: 'space-between'}}>
-						<CardTitle>{pet.name}</CardTitle>
+						<CardTitle><b>{pet.name}</b></CardTitle>
 						<Link 
 						to={{
 							pathname: '/edit-pet',
@@ -33,10 +33,16 @@ const PetCard = ({ pet }) => {
 							{/* followers? */}
 						</ul>
 					</CardBody>
-					<div id='cardButtons'>
-						<Button>Add Behavior</Button>
-						<Button>Add Symptom</Button>
-					</div>
+						<Link 
+						to={{
+							pathname: '/post/add',
+							state: { pet },
+						}}
+						>
+						<div id='cardButtons'>
+							<Button>Add Post</Button>
+						</div>
+						</Link>
 				</Card>
 		</div>
 	</>
