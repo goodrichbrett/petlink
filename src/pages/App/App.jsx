@@ -12,6 +12,7 @@ import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
 import OwnerProfile from '../OwnerProfile/OwnerProfile';
+import EditUser from '../EditUser/EditUser'
 import LandingContent from '../../components/Landing/Landing';
 
 class App extends Component {
@@ -77,7 +78,7 @@ class App extends Component {
 									/>
 								</div>
 							) : (
-								<LandingContent />
+								<Redirect to="/login" />
 							)
 						}
 					/>
@@ -111,11 +112,10 @@ class App extends Component {
 					<Route
 						exact
 						path="/pet"
-						render={({ history, location }) =>
+						render={({ history }) =>
 							user ? (
 								<Pet
 									history={history}
-									location={location}
 									user={user}
 									pets={this.state.pets}
 								/>
@@ -151,12 +151,20 @@ class App extends Component {
 					<Route
 						exact
 						path="/user"
-						render={() => <OwnerProfile user={this.state.user} />}
 						render={({ location }) => (
 							<OwnerProfile
 								user={this.state.user}
 								pets={this.state.pets}
 								followedPets={this.state.followedPets}
+								location={location}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/edit-user"
+						render={({ location }) => (
+							<EditUser
 								location={location}
 							/>
 						)}
