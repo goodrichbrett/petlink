@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './SummaryCard.css';
@@ -11,8 +12,10 @@ const SummaryCard = ({ pet }) => {
 					state: { pet },
 				}}
 			>
-				<span id='summaryCard-img'>
-				<img id='petAvatar' src="https://picsum.photos/100/100" alt="" />
+				<span id='summaryCard-img' style={{ backgroundImage: `url(${pet.avatar})` }}>
+				{
+					//<img id='petAvatar' src="https://picsum.photos/100/100" alt="" />
+				}
 				</span>
 				<span id='summaryCard-content'>
 				<h1>{pet.name}</h1>

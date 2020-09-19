@@ -1,6 +1,7 @@
 #user-avatar {
     border-radius: 50%;
     border: solid 2px gray;
+    max-width: 50px;
 }
 
 #navItem {
