@@ -54,7 +54,7 @@ const PetCard = ({ pet, user }) => {
 					</CardBody>
 					<Link
 						to={{
-							pathname: '/post/add',
+							pathname: '/posts/add',
 							state: { pet },
 						}}
 					>
