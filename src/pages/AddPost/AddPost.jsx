@@ -56,6 +56,7 @@ class AddPost extends React.Component {
 							name="title"
 							id="title"
 							placeholder="Add a title to the behavior or symptom"
+							required
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -77,6 +78,7 @@ class AddPost extends React.Component {
 							type="textarea"
 							name="content"
 							id="content"
+							required
 						/>
 					</FormGroup>
 					<FormGroup>

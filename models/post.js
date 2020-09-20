@@ -9,12 +9,10 @@ const commentSchema = new Schema({
 const postSchema = new Schema({
 	title: {
 		type: String,
-		required: true,
 	},
 	postType: String, //behavior or symptom
 	content: {
 		type: String,
-		required: true,
 	},
 	tags: Array,
 	date: Date,
