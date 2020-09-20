@@ -44,6 +44,19 @@ class App extends Component {
 		);
 	};
 
+	handleFollowPet = async (followedPetData) => {
+		// const newPet = await petAPI.create(newPetData);
+		// newPet.addedBy = this.state.user._id;
+		// this.setState(
+		// 	(state) => ({
+		// 		pets: [...state.pets, newPet],
+		// 	}),
+		// 	() => this.props.history.push('/')
+		// );
+	};
+
+
+
 	handleUpdatePet = async (updatedPetData) => {
 		const updatedPet = await petAPI.update(updatedPetData);
 		const newPetsArray = this.state.pets.map((p) =>
