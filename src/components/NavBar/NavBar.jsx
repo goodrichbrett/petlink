@@ -46,7 +46,7 @@ const NavBar = ({ user, handleLogout }) => {
 									pathname: '/user',
 									state: {user}
 								}}
-								><img src={user.avatar ? user.avatar : "https://picsum.photos/50/50"} id='user-avatar'/>
+								><img src={user.avatar ? user.avatar : "https://picsum.photos/50/50"} id='user-avatar' alt=''/>
 								</Link>
 							</NavbarText>
 						</Collapse>
@@ -67,7 +67,7 @@ const NavBar = ({ user, handleLogout }) => {
 								to={{
 									pathname: '/login'
 								}}
-								><img src="https://picsum.photos/50/50" id='user-avatar'/>
+								><img src="https://picsum.photos/50/50" id='user-avatar' alt=''/>
 								</Link>
 							</NavbarText>
 						</Collapse>

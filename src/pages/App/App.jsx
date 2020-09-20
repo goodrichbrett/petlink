@@ -10,11 +10,12 @@ import EditPet from '../../pages/EditPet/EditPet';
 import './App.css';
 import AddPet from '../../components/AddPet/AddPet';
 import * as petAPI from '../../services/petService';
-import * as userAPI from '../../services/userService'
+import * as userAPI from '../../services/userService';
+import * as postAPI from '../../services/postService';
 import OwnerFeed from '../OwnerFeed/OwnerFeed';
 import OwnerProfile from '../OwnerProfile/OwnerProfile';
-import EditUser from '../EditUser/EditUser'
-import AddPost from '../../pages/AddPost/AddPost'
+import EditUser from '../EditUser/EditUser';
+import AddPost from '../../pages/AddPost/AddPost';
 import LandingContent from '../../components/Landing/Landing';
 
 class App extends Component {
@@ -69,15 +70,22 @@ class App extends Component {
 
 	handleUpdateUser = async (updatedUserData) => {
 		const updatedUser = await userAPI.update(updatedUserData);
-		console.log('update user', updatedUser)
+		console.log('update user', updatedUser);
 		this.setState({ user: updatedUser }, () =>
 			this.props.history.push('/')
 		);
 	};
 
-	handleAddPost = (postData) => {
-
-	}
+	handleAddPost = async (newPostData) => {
+		const newPost = await postAPI.create(newPostData);
+		newPost.user = this.state.user._id;
+		this.setState(
+			(state) => ({
+				posts: [state.posts, newPost],
+			}),
+			() => this.props.history.push('/')
+		);
+	};
 
 	async componentDidMount() {
 		const pets = await petAPI.getPets();
@@ -200,10 +208,11 @@ class App extends Component {
 					/>
 					<Route
 						exact
-						path="/post/add"
+						path="/posts/add"
 						render={({ location }) => (
 							<AddPost
 								location={location}
+								user={this.state.user}
 								handleAddPost={this.handleAddPost}
 							/>
 						)}

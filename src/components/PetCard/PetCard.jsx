@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./PetCard.css";
 import * as userAPI from "../../services/userService";
 import {
+
   Card,
   CardImg,
   CardText,
@@ -10,6 +11,11 @@ import {
   CardTitle,
   Button,
 } from "reactstrap";
+
+	Card, CardImg, CardText, CardBody,
+	CardTitle, Button
+  } from 'reactstrap';
+
 
 const PetCard = ({ pet, user }) => {
   return (
