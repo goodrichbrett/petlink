@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
 	Dropdown,
@@ -8,6 +8,8 @@ import {
 } from 'reactstrap';
 
 const InfoCard = ({ user }) => {
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const toggle = () => setDropdownOpen((prevState) => !prevState);
 	return (
 		<div>
 			<h1>About You:</h1>
@@ -46,6 +48,19 @@ const InfoCard = ({ user }) => {
 			>
 				Add new Pet
 			</Link>
+			<Dropdown isOpen={dropdownOpen} toggle={toggle}>
+				<DropdownToggle caret>More Options</DropdownToggle>
+				<DropdownMenu>
+					<Link
+						to={{
+							pathname: `/${user._id}/delete`,
+							state: { user },
+						}}
+					>
+						<DropdownItem>Delete Account</DropdownItem>
+					</Link>
+				</DropdownMenu>
+			</Dropdown>
 		</div>
 	);
 };
