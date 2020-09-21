@@ -60,3 +60,15 @@ export function getFollowedPets() {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+export function getApplicable(formData) {
+	return fetch(
+		`${BASE_URL}search`,
+		{
+			method: 'POST',
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+			body: JSON.stringify(formData),
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}

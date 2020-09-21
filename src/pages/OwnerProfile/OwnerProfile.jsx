@@ -15,10 +15,9 @@ class OwnerProfile extends Component {
 			<div>
 				<h1>Owner Page</h1>
 				<img src="https://picsum.photos/50/50" alt="" />
-			
-				<InfoCard user={this.props.location.state.user}/>
-				{/* Add button to edit ProfileInfo will take use to edit  */}
 
+				<InfoCard user={this.props.location.state.user} />
+				{/* Add button to edit ProfileInfo will take use to edit  */}
 
 				<h2>Pets</h2>
 				{this.props.pets.map((pet) => (

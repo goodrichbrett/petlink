@@ -24,6 +24,7 @@ class App extends Component {
 		user: authService.getUser(),
 		pets: [],
 		followedPets: [],
+		searchResults: [],
 	};
 
 	handleLogout = () => {
@@ -86,6 +87,12 @@ class App extends Component {
 		);
 	};
 
+	handleSearch = async (formData) => {
+		const searchResults = await petAPI.getApplicable(formData);
+		console.log('applicable', searchResults);
+		this.setState({ searchResults });
+	};
+
 	async componentDidMount() {
 		const pets = await petAPI.getPets();
 		// this needs to be fixed, once we have the follow pet feature.
@@ -106,6 +113,16 @@ class App extends Component {
 						render={() =>
 							user ? (
 								<div>
+
+									<h1
+										style={{
+											margin: '0.5em 0 1em 0',
+											textAlign: 'center',
+										}}
+									>
+										News Feed
+									</h1>
+
 									<OwnerFeed
 										user={this.state.user}
 										followedPets={this.state.followedPets}
@@ -220,7 +237,11 @@ class App extends Component {
 						exact
 						path="/search"
 						render={({ location }) => (
-							<Search location={location} user={this.state.user}></Search>
+							<Search
+								location={location}
+								user={this.state.user}
+								handleSearch={this.handleSearch}
+							></Search>
 						)}
 					/>
 				</div>

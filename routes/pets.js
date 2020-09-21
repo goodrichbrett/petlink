@@ -3,6 +3,7 @@ const petsCtrl = require('../controllers/pets');
 
 router.use(require('../config/auth'));
 router.get('/', checkAuth, petsCtrl.index);
+router.post('/search', checkAuth, petsCtrl.search);
 router.post('/', checkAuth, petsCtrl.create);
 router.put('/:id', checkAuth, petsCtrl.update);
 router.delete('/:id', checkAuth, petsCtrl.delete);

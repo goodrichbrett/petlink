@@ -6,6 +6,7 @@ module.exports = {
 	index,
 	delete: deletePet,
 	update,
+	search,
 };
 
 // function create(req, res) {
@@ -45,4 +46,11 @@ function update(req, res) {
 			res.status(200).json(pet);
 		}
 	);
+}
+
+function search(req, res) {
+	console.log('req', req.body);
+	Pet.find({ type: req.query.type }, (err, pets) => {
+		res.status(200).json(pets);
+	});
 }
