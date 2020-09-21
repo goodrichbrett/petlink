@@ -9,7 +9,7 @@ const petSchema = new Schema({
 	breed: { type: String },
 	gender: { type: String },
 	age: { type: Number },
-	conditions: [{ type: Schema.Types.ObjectId, ref: 'Condition' }],
+	conditions: [],
 	posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
 	ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
 	followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
