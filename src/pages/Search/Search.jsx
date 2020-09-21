@@ -29,7 +29,7 @@ class Search extends Component {
   formRef = React.createRef();
   render() {
     return (
-      <>
+      <div>
         <h1>Search Page</h1>
         <Form ref={this.formRef} onSubmit={this.handleSubmit}>
           <FormGroup>
@@ -74,7 +74,7 @@ class Search extends Component {
         </Form>
 
         {/* map response from state, if there is no data, tell the user there is no data. */}
-      </>
+      </div>
     );
   }
 }

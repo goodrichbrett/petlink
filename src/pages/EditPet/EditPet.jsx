@@ -99,7 +99,7 @@ class EditPet extends Component {
 						type="text"
 						name="conditions"
 						placeholder="Please separate with comma and no spaces"
-						value={this.state.formData.conditions.join(',')}
+						value={this.state.formData.conditions}
 					/>
 				</FormGroup>
 				<Link
