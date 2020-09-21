@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {Link} from 'react-router-dom'
 import './EditPet.css';
 
 class EditPet extends Component {
@@ -108,6 +109,14 @@ class EditPet extends Component {
 						value={this.state.pet.conditions.join(',')}
 					/>
 				</FormGroup>
+				<Link
+					to={{
+						pathname: '/pet',
+						state: { pet: this.state.pet },
+					}}
+					>
+					<Button>Cancel</Button>
+				</Link>&nbsp;&nbsp;&nbsp;&nbsp;
 				<Button>Submit</Button>
 			</Form>
 		);
