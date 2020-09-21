@@ -23,7 +23,7 @@ class EditPet extends Component {
 	handleSubmit = async (e) => {
 		e.preventDefault();
 		this.props.handleUpdatePet(this.state.formData);
-		//history.push("/pet"); pass pet id?
+		//this.props.history.push("/pet");
 	};
 
 	formRef = React.createRef();
@@ -37,7 +37,7 @@ class EditPet extends Component {
 						onChange={this.handleChange}
 						type="text"
 						name="name"
-						value={this.state.pet.name}
+						value={this.state.formData.name}
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -46,7 +46,7 @@ class EditPet extends Component {
 						onChange={this.handleChange}
 						type="text"
 						name="avatar"
-						value={this.state.pet.avatar}
+						value={this.state.formData.avatar}
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -55,7 +55,7 @@ class EditPet extends Component {
 						onChange={this.handleChange}
 						type="text"
 						name="type"
-						value={this.state.pet.type}
+						value={this.state.formData.type}
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -64,7 +64,7 @@ class EditPet extends Component {
 						onChange={this.handleChange}
 						type="text"
 						name="breed"
-						value={this.state.pet.breed}
+						value={this.state.formData.breed}
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -73,19 +73,12 @@ class EditPet extends Component {
 						type="select"
 						name="gender"
 						onChange={this.handleChange}
+						value={this.state.formData.gender}
 					>
-						<option
-							selected={
-								this.state.pet.gender === 'Male' ? true : false
-							}
-						>
+						<option>
 							Male
 						</option>
-						<option
-							selected={
-								this.state.pet.gender === 'Male' ? false : true
-							}
-						>
+						<option>
 							Female
 						</option>
 					</Input>
@@ -96,7 +89,7 @@ class EditPet extends Component {
 						onChange={this.handleChange}
 						type="number"
 						name="age"
-						value={this.state.pet.age}
+						value={this.state.formData.age}
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -106,13 +99,13 @@ class EditPet extends Component {
 						type="text"
 						name="conditions"
 						placeholder="Please separate with comma and no spaces"
-						value={this.state.pet.conditions.join(',')}
+						value={this.state.formData.conditions.join(',')}
 					/>
 				</FormGroup>
 				<Link
 					to={{
 						pathname: '/pet',
-						state: { pet: this.state.pet },
+						state: { pet: this.state.pet, user: this.props.user }
 					}}
 					>
 					<Button>Cancel</Button>
