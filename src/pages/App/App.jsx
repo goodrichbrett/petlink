@@ -113,6 +113,7 @@ class App extends Component {
 						render={() =>
 							user ? (
 								<div>
+
 									<h1
 										style={{
 											margin: '0.5em 0 1em 0',
@@ -121,6 +122,7 @@ class App extends Component {
 									>
 										News Feed
 									</h1>
+
 									<OwnerFeed
 										user={this.state.user}
 										followedPets={this.state.followedPets}
