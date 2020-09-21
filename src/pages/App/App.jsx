@@ -17,6 +17,7 @@ import OwnerProfile from '../OwnerProfile/OwnerProfile';
 import EditUser from '../EditUser/EditUser';
 import AddPost from '../../pages/AddPost/AddPost';
 import LandingContent from '../../components/Landing/Landing';
+import Search from '../Search/Search';
 
 class App extends Component {
 	state = {
@@ -216,6 +217,13 @@ class App extends Component {
 								user={this.state.user}
 								handleAddPost={this.handleAddPost}
 							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/search"
+						render={({ location }) => (
+							<Search location={location} user={this.state.user}></Search>
 						)}
 					/>
 				</div>
