@@ -53,7 +53,7 @@ const InfoCard = ({ user }) => {
 				<DropdownMenu>
 					<Link
 						to={{
-							pathname: `/${user._id}/delete`,
+							pathname: `/${user._id}/`,
 							state: { user },
 						}}
 					>
