@@ -49,8 +49,15 @@ function update(req, res) {
 }
 
 function search(req, res) {
-	console.log('req', req.body);
-	Pet.find({ type: req.query.type }, (err, pets) => {
+	const { type, distance, condition } = req.query;
+	let query = { type };
+	if (condition) {
+		query = {...query, conditions: condition};
+	}
+	// if (distance) {
+	// 	query = {...query, distance};
+	// }
+	Pet.find(query, (err, pets) => {
 		res.status(200).json(pets);
 	});
 }
