@@ -48,7 +48,7 @@ const PetCard = ({ pet, user }) => {
 							<li>{pet.breed}</li>
 							<li>{pet.gender}</li>
 							<li>{pet.age}</li>
-							<li>Illnesses: {pet.illnesses.join(', ')}</li>
+							<li>Conditions: {pet.conditions.join(', ')}</li>
 							{/* followers? */}
 						</ul>
 					</CardBody>

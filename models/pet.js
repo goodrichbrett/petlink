@@ -9,10 +9,14 @@ const petSchema = new Schema({
 	breed: { type: String },
 	gender: { type: String },
 	age: { type: Number },
-	illnesses: [{ type: Schema.Types.ObjectId, ref: 'Illness' }],
+	conditions: [{ type: Schema.Types.ObjectId, ref: 'Condition' }],
 	posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
 	ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
 	followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+	location: {
+		type: Object,
+		default: null,
+	},
 });
 
 module.exports = mongoose.model('Pet', petSchema);

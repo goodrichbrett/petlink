@@ -50,3 +50,13 @@ export function update(pet) {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+export function getFollowedPets(user) {
+	return fetch(
+		`${BASE_URL}${user.following}`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}

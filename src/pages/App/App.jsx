@@ -56,8 +56,6 @@ class App extends Component {
 		// );
 	};
 
-
-
 	handleUpdatePet = async (updatedPetData) => {
 		const updatedPet = await petAPI.update(updatedPetData);
 		const newPetsArray = this.state.pets.map((p) =>
@@ -90,7 +88,7 @@ class App extends Component {
 	async componentDidMount() {
 		const pets = await petAPI.getPets();
 		// this needs to be fixed, once we have the follow pet feature.
-		const followedPets = await petAPI.getPets(this.state.user.following);
+		const followedPets = await petAPI.getFollowedPets(this.state.user);
 		console.log('followed pets', this.state.user);
 		this.setState({ pets, followedPets });
 	}
