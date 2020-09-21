@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import Results from '../../components/Results/Results';
 import * as petService from '../../services/petService'
 
 class Search extends Component {
@@ -44,7 +45,10 @@ class Search extends Component {
 	render() {
 		return (
 			<>
+        <div>
 				<h1>Search Page</h1>
+        </div>
+        <div>
 				<Form ref={this.formRef} onSubmit={this.handleSubmit}>
 					<FormGroup>
 						<Label for="type">Animal Type:</Label>
@@ -85,8 +89,11 @@ class Search extends Component {
 					</FormGroup>
 					<Button>Search Pets</Button>
 				</Form>
-
-				{/* map response from state, if there is no data, tell the user there is no data. */}
+        </div>
+        <div>
+        {this.state.results.length ? <><h1>Results</h1><Results pets={this.state.results}/></> : ''}
+				
+        </div>
 			</>
 		);
 	}
