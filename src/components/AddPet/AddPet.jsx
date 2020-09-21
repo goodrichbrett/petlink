@@ -11,7 +11,7 @@ class AddPet extends Component {
 			breed: '',
 			gender: '',
 			age: null,
-			illnesses: [],
+			conditions: [],
 			posts: [],
 			symptoms: [],
 			ownerId: '',

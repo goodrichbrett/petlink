@@ -99,13 +99,13 @@ class EditPet extends Component {
 					/>
 				</FormGroup>
 				<FormGroup>
-					<Label for="illnesses">Illnesses</Label>
+					<Label for="conditions">Conditions</Label>
 					<Input
 						onChange={this.handleChange}
 						type="text"
-						name="illnesses"
+						name="conditions"
 						placeholder="Please separate with comma and no spaces"
-						value={this.state.pet.illnesses.join(',')}
+						value={this.state.pet.conditions.join(',')}
 					/>
 				</FormGroup>
 				<Button>Submit</Button>

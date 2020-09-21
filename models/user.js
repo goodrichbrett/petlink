@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
 	{
 		name: String,
 		email: { type: String, required: true, lowercase: true, unique: true },
@@ -18,10 +19,10 @@ const userSchema = new mongoose.Schema(
 			default: null,
 		},
 		phoneNumber: String, // should not be displayed on UI publicly
-		pets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }],
+		pets: [{ type: Schema.Types.ObjectId, ref: 'Pet' }],
 		following: [
 			{
-				type: mongoose.Schema.Types.ObjectId,
+				type: Schema.Types.ObjectId,
 				ref: 'Pet',
 			},
 		],
