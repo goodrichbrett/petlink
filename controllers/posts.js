@@ -15,7 +15,7 @@ function create(req, res) {
 }
 
 function index(req, res) {
-	Post.find({}, (err, posts) => {
+	Post.find({ private: false }, (err, posts) => {
 		res.status(200).json(posts);
 	});
 }
