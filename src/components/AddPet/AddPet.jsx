@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddPet extends Component {
@@ -116,6 +117,14 @@ class AddPet extends Component {
 								required
 							></Input>
 						</FormGroup>
+						<Link
+							to={{
+								pathname: '/',
+								state: { pet: this.state.pet, user: this.props.user }
+							}}
+							>
+							<Button>Cancel</Button>
+						</Link>&nbsp;&nbsp;&nbsp;&nbsp;
 						<Button type="submit">Submit</Button>
 					</Form>
 					</div>
