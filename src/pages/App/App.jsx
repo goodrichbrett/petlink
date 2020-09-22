@@ -18,6 +18,7 @@ import EditUser from '../EditUser/EditUser';
 import AddPost from '../../pages/AddPost/AddPost';
 import LandingContent from '../../components/Landing/Landing';
 import Search from '../Search/Search';
+import ArchivePage from '../ArchivePage/ArchivePage';
 
 class App extends Component {
 	state = {
@@ -94,7 +95,7 @@ class App extends Component {
 	};
 
 	async componentDidMount() {
-		const user = await authService.getUser()
+		const user = await authService.getUser();
 		const pets = await petAPI.getPets();
 		// this needs to be fixed, once we have the follow pet feature.
 		const followedPets = await petAPI.getFollowedPets();
@@ -234,6 +235,16 @@ class App extends Component {
 								user={this.state.user}
 								handleSearch={this.handleSearch}
 							></Search>
+						)}
+					/>
+					<Route
+						exact
+						path="/archive"
+						render={({ location }) => (
+							<ArchivePage
+								location={location}
+								user={this.state.user}
+							/>
 						)}
 					/>
 				</div>

@@ -69,6 +69,18 @@ const PetCard = ({ pet, user }) => {
 							Follow Pet
 						</Button>
 					)}
+					<div id="cardButtons">
+						<Button>
+							<Link
+								to={{
+									pathname: '/archive',
+									// state: { user },
+								}}
+							>
+								See Archived
+							</Link>
+						</Button>
+					</div>
 				</Card>
 			</div>
 		</>
