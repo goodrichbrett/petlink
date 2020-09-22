@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class AddPet extends Component {
@@ -38,10 +39,10 @@ class AddPet extends Component {
 	formRef = React.createRef();
 	render() {
 		return (
-			<>
-				<div className="AddTodo">
-					<h1>New Pet</h1>
-					<Form ref={this.formRef} onSubmit={this.handleSubmit}>
+				<div style={{width: '100%'}}>
+					<h1 style={{textAlign: 'center'}}>New Pet</h1>
+					<div style={{display: 'flex', justifyContent: 'center'}}>
+					<Form style={{width: '100%', maxWidth: '500px'}} ref={this.formRef} onSubmit={this.handleSubmit}>
 						<FormGroup>
 							<Label for="name">Pet Name</Label>
 							<Input
@@ -116,10 +117,18 @@ class AddPet extends Component {
 								required
 							></Input>
 						</FormGroup>
+						<Link
+							to={{
+								pathname: '/',
+								state: { pet: this.state.pet, user: this.props.user }
+							}}
+							>
+							<Button>Cancel</Button>
+						</Link>&nbsp;&nbsp;&nbsp;&nbsp;
 						<Button type="submit">Submit</Button>
 					</Form>
+					</div>
 				</div>
-			</>
 		);
 	}
 }
