@@ -58,23 +58,19 @@ function search(req, res) {
 	if (condition) {
 		query = {...query, conditions: condition};
 	}
-	// if (distance) {
-	// 	query = {...query, distance};
-	// }
 
-	// create new pet array
+	const filteredPets = [];
+
 	Pet.find(query, (err, pets) => {
 		pets.forEach(pet => {
-			//get the latitutde and longitude of pet
-			// pass it through Haversine with req.user.location long and lat
-			// compare distance 
-			// if within the bounds of the distance push to array
+			const distanceBetween = haversineDistance(req.user.location.lat, req.user.location.long, pet.location.lat, pet.location.long, true)
+
+			if (distanceBetween <= distance) {
+				filteredPets.push(pet)
+			}
 		})
-		res.status(200).json(pets);
+		res.status(200).json(filteredPets);
 	});
-
-
-
 }
 
 function getFollowedPets(req, res) {
