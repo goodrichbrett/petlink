@@ -11,7 +11,8 @@ class OwnerFeed extends Component {
 	};
 	async componentDidMount() {
 		const followedPets = await petAPI.getPets(this.props.user.following);
-		const posts = await postAPI.getPosts();
+		const posts = await postAPI.getApplicablePosts(followedPets);
+		console.log(posts);
 		this.setState({ followedPets, posts });
 	}
 	render() {

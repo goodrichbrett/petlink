@@ -46,9 +46,9 @@ export function getOne(post) {
 	).then((res) => res.json());
 }
 
-export function getApplicablePosts(id) {
+export function getApplicablePosts(followedPets) {
 	return fetch(
-		`${BASE_URL}${id}`,
+		`${BASE_URL}${followedPets}`,
 		{
 			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
 		},
