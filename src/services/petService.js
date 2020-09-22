@@ -54,7 +54,7 @@ export function update(pet) {
 
 export function getFollowedPets() {
 	return fetch(
-		`/api/users/`,
+		`${BASE_URL}following`,
 		{
 			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
 		},
