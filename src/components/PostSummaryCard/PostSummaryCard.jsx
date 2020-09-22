@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 
 const PostSummaryCard = ({ post, pet }) => {
 	return (
@@ -11,9 +12,17 @@ const PostSummaryCard = ({ post, pet }) => {
 				state: { post: post },
 			}}
 		>
-			<span id="summaryCard-content">
-				<h1>{post.title}</h1>
-				<h3>{post.date}</h3>
+			<span
+				id="summaryCard-img"
+				style={{ backgroundColor: `#7DCE82` }}
+			>
+				{
+					//<img id='petAvatar' src="https://picsum.photos/100/100" alt="" />
+				}
+			</span>
+			<span >
+				<h3>{post.title}</h3>
+				<h3>{new Date(post.date).toLocaleDateString()}</h3>
 			</span>
 		</Link>
 	);
