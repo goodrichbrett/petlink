@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SummaryCard from '../../components/SummaryCard/SummaryCard';
+import PostSummaryCard from '../../components/PostSummaryCard/PostSummaryCard';
 import * as petAPI from '../../services/petService';
 import * as postAPI from '../../services/postService';
 
@@ -7,6 +7,7 @@ class OwnerFeed extends Component {
 	state = {
 		followedPets: [],
 		posts: [],
+		pet: {},
 	};
 	async componentDidMount() {
 		const followedPets = await petAPI.getPets(this.props.user.following);
@@ -19,9 +20,9 @@ class OwnerFeed extends Component {
 				<h1 style={{ margin: '0 0 1em 0', textAlign: 'center' }}>
 					News Feed
 				</h1>
-				{this.state.followedPets.map((pet) => (
+				{this.state.posts.map((post) => (
 					// Update SummaryCard component once we have more information on a pets Post.
-					<SummaryCard key={pet._id} pet={pet} />
+					<PostSummaryCard key={post._id} post={post} />
 				))}
 			</>
 		);

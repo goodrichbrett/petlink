@@ -1,5 +1,5 @@
 import tokenService from '../services/tokenService';
-import axios from 'axios'
+import axios from 'axios';
 const BASE_URL = '/api/pets/';
 
 export function create(pet) {
@@ -63,7 +63,6 @@ export function getFollowedPets() {
 }
 
 export function getApplicable(formData) {
-	
 	return axios.get(`${BASE_URL}search`, {
 		headers: { Authorization: 'Bearer ' + tokenService.getToken() },
 		params: {
@@ -72,5 +71,14 @@ export function getApplicable(formData) {
 			condition: formData.condition,
 		},
 	});
-	
+}
+
+export function getOneById(id) {
+	return fetch(
+		`${BASE_URL}${id}`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
 }

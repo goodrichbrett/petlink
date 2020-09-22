@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PostSummaryCard = ({ post }) => {
+const PostSummaryCard = ({ post, pet }) => {
 	return (
 		<Link
 			id="summaryCard"
