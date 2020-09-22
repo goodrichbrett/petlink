@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import Results from '../../components/Results/Results';
-import * as petService from '../../services/petService'
+import * as petService from '../../services/petService';
 
 class Search extends Component {
 	state = {
@@ -14,7 +14,7 @@ class Search extends Component {
 			condition: '',
 		},
 		results: [],
-  };
+	};
 
 	handleChange = (e) => {
 		const formData = {
@@ -34,66 +34,69 @@ class Search extends Component {
 	};
 
 	getData = () => {
-		petService.getApplicable(this.state.formData)
-			.then((response) => {
-				console.log(response.data);
-				this.setState({ results: response.data });
-			});
+		petService.getApplicable(this.state.formData).then((response) => {
+			console.log(response.data);
+			this.setState({ results: response.data });
+		});
 	};
 
 	formRef = React.createRef();
 	render() {
 		return (
 			<>
-        <div>
-				<h1>Search Page</h1>
-        </div>
-        <div>
-				<Form ref={this.formRef} onSubmit={this.handleSubmit}>
-					<FormGroup>
-						<Label for="type">Animal Type:</Label>
-						<Input
-							onChange={this.handleChange}
-							type="select"
-							name="type"
-							value={this.state.formData.type}
-						>
-							{this.state.animalType.map((animal) => (
-								<option>{animal}</option>
-							))}
-						</Input>
-					</FormGroup>
-					{/*  */}
-					<FormGroup>
-						<Label for="distance">Miles From You:</Label>
-						<Input
-							onChange={this.handleChange}
-							type="select"
-							name="distance"
-							value={this.state.formData.distance}
-						>
-							{this.state.distance.map((distance) => (
-								<option>{distance}</option>
-							))}
-						</Input>
-					</FormGroup>
-					{/*  */}
-					<FormGroup>
-						<Label for="condition">Condition:</Label>
-						<Input
-							onChange={this.handleChange}
-							type="text"
-							name="condition"
-							value={this.state.formData.condition}
-						/>
-					</FormGroup>
-					<Button>Search Pets</Button>
-				</Form>
-        </div>
-        <div>
-        {this.state.results.length ? <><h1>Results</h1><Results pets={this.state.results}/></> : ''}
-				
-        </div>
+				<Container>
+					<h1>Search Page</h1>
+					<Form ref={this.formRef} onSubmit={this.handleSubmit}>
+						<FormGroup>
+							<Label for="type">Animal Type:</Label>
+							<Input
+								onChange={this.handleChange}
+								type="select"
+								name="type"
+								value={this.state.formData.type}
+							>
+								{this.state.animalType.map((animal) => (
+									<option>{animal}</option>
+								))}
+							</Input>
+						</FormGroup>
+						{/*  */}
+						<FormGroup>
+							<Label for="distance">Miles From You:</Label>
+							<Input
+								onChange={this.handleChange}
+								type="select"
+								name="distance"
+								value={this.state.formData.distance}
+							>
+								{this.state.distance.map((distance) => (
+									<option>{distance}</option>
+								))}
+							</Input>
+						</FormGroup>
+						{/*  */}
+						<FormGroup>
+							<Label for="condition">Condition:</Label>
+							<Input
+								onChange={this.handleChange}
+								type="text"
+								name="condition"
+								value={this.state.formData.condition}
+							/>
+						</FormGroup>
+						<Button>Search Pets</Button>
+					</Form>
+					{/* </Container>
+				<Container> */}
+					{this.state.results.length ? (
+						<>
+							<h1>Results</h1>
+							<Results pets={this.state.results} />
+						</>
+					) : (
+						''
+					)}
+				</Container>
 			</>
 		);
 	}
