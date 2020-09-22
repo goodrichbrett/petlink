@@ -45,3 +45,13 @@ export function getOne(post) {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+export function getApplicablePosts(id) {
+	return fetch(
+		`${BASE_URL}${id}`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}

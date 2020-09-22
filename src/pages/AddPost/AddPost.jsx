@@ -11,6 +11,7 @@ class AddPost extends React.Component {
 		date: new Date(),
 		private: false, //checkbox
 		archive: false, //checkbox
+		pet: this.props.location.state.pet._id,
 	};
 
 	handleChange = (e) => {

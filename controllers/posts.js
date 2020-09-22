@@ -4,6 +4,7 @@ module.exports = {
 	create,
 	index,
 	createComment,
+	getApplicablePosts,
 };
 
 function create(req, res) {
@@ -27,5 +28,11 @@ function createComment(req, res) {
 		post.save((err) => {
 			res.status(200).json(post);
 		});
+	});
+}
+
+function getApplicablePosts(req, res) {
+	Post.find({ pet: req.params.id }, (err, post) => {
+		res.status(200).json(post);
 	});
 }

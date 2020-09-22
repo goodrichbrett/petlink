@@ -19,9 +19,9 @@ class OwnerFeed extends Component {
 				<h1 style={{ margin: '0 0 1em 0', textAlign: 'center' }}>
 					News Feed
 				</h1>
-				{this.state.posts.map((post) => (
+				{this.state.followedPets.map((pet) => (
 					// Update SummaryCard component once we have more information on a pets Post.
-					<SummaryCard key={post._id} post={post} />
+					<SummaryCard key={pet._id} pet={pet} />
 				))}
 			</>
 		);

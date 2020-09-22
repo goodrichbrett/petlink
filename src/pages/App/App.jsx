@@ -116,6 +116,7 @@ class App extends Component {
 									<OwnerFeed
 										user={this.state.user}
 										followedPets={this.state.followedPets}
+										pets={this.state.pets}
 									/>
 								</div>
 							) : (

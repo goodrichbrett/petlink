@@ -5,6 +5,7 @@ router.use(require('../config/auth'));
 router.post('/', checkAuth, postsCtrl.create);
 router.post('/comments', checkAuth, postsCtrl.createComment);
 router.get('/', checkAuth, postsCtrl.index);
+router.get('/:id', checkAuth, postsCtrl.getApplicablePosts);
 
 function checkAuth(req, res, next) {
 	if (req.user) return next();

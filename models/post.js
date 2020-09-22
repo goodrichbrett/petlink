@@ -20,6 +20,7 @@ const postSchema = new Schema({
 	archived: Boolean,
 	private: Boolean,
 	user: { type: Schema.Types.ObjectId, ref: 'User' },
+	pet: { type: Schema.Types.ObjectId, ref: 'Pet' },
 });
 
 module.exports = mongoose.model('Post', postSchema);
