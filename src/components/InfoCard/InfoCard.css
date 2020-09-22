@@ -1,0 +1,25 @@
+#usercard {
+    width: 100%;
+    max-width: 500px;
+}
+
+#usercard ul {
+    margin: 0;
+    text-align: left;
+}
+
+#cardButtons {
+    width: 100%;
+}
+
+#cardButtons>Button {
+    width: 100%;
+    border-radius: 0;
+    background-color: #7DCE82;
+    border: none;
+    color: black;
+}
+
+#cardButtons>Button:hover {
+    color: white;
+}

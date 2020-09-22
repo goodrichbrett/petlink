@@ -12,19 +12,19 @@ class OwnerProfile extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Owner Page</h1>
-				<img src="https://picsum.photos/50/50" alt="" />
+			<div style={{width:'100%', maxWidth:'300px', textAlign:'center'}}>
+				<h1 style={{ margin: '0 0 1em 0', textAlign: 'center' }}>
+					Profile
+				</h1>
 
 				<InfoCard user={this.props.location.state.user} />
-				{/* Add button to edit ProfileInfo will take use to edit  */}
 
-				<h2>Pets</h2>
+				<h2 style={{ margin: '1em 0 1em 0', textAlign: 'center' }}>Pets</h2>
 				{this.props.pets.map((pet) => (
 					<SummaryCard pet={pet} />
 				))}
 
-				<h2>Following</h2>
+				<h2 style={{ margin: '1em 0 1em 0', textAlign: 'center' }}>Following</h2>
 				{this.props.followedPets.map((followedPet) => (
 					<Link
 						to={{

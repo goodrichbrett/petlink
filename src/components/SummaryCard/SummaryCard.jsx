@@ -15,13 +15,9 @@ const SummaryCard = ({ pet }) => {
 				id="summaryCard-img"
 				style={{ backgroundImage: `url(${pet.avatar})` }}
 			>
-				{
-					//<img id='petAvatar' src="https://picsum.photos/100/100" alt="" />
-				}
 			</span>
 			<span id="summaryCard-content">
-				<h1>{pet.name}</h1>
-				<h3>Post Title Here</h3>
+				<h3 style={{padding: '0.5em'}}>{pet.name}</h3>
 			</span>
 		</Link>
 	);

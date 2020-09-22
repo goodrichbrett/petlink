@@ -1,67 +1,76 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './InfoCard.css'
 import {
-	Dropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem,
+	Card,
+	CardImg,
+	CardText,
+	CardBody,
+	CardTitle,
+	Button,
 } from 'reactstrap';
 
 const InfoCard = ({ user }) => {
-	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const toggle = () => setDropdownOpen((prevState) => !prevState);
 	return (
-		<div>
-			<h1>About You:</h1>
-			{user.isVet ? (
-				<>
-					<h3>Name: {user.name}</h3>
-					<h3>Email:{user.email}</h3>
-					<h3>Phone Number:{user.phone}</h3>
-					<h3>License Number: {user.licenseNo}</h3>
-					<h3>State License Number:{user.licenseState}</h3>
-				</>
-			) : (
-				<>
-					<h3>Name: {user.name}</h3>
-					<h3>Email:{user.email}</h3>
-					<h3>
-						Phone Number:
-						{user.phone ? user.phone : ' No Phone Number'}
-					</h3>
-				</>
-			)}
-			<Link
-				to={{
-					pathname: '/edit-user',
-					state: { user },
-				}}
-			>
-				Edit Profile Info
-			</Link>
-			&nbsp;&nbsp;&nbsp;
-			<Link
-				to={{
-					pathname: '/pets/add',
-					state: { user },
-				}}
-			>
-				Add new Pet
-			</Link>
-			<Dropdown isOpen={dropdownOpen} toggle={toggle}>
-				<DropdownToggle caret>More Options</DropdownToggle>
-				<DropdownMenu>
+		<>
+			<div id="usercard">
+				<Card>
+					<CardImg
+						top
+						width="100%"
+						src={user.avatar}
+						alt="Card image cap"
+					/>
+					<CardBody>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'space-between',
+							}}
+						>
+							<CardTitle>
+								<b>{user.name}</b>
+							</CardTitle>
+							<Link
+								to={{
+									pathname: '/edit-user',
+									state: { user },
+								}}
+							>
+								<CardText>
+									<i class="far fa-edit"></i>
+								</CardText>
+							</Link>
+						</div>
+						<ul>
+							<li>{user.email}</li>
+							<li>{user.type ? 'Vet' : 'Pet Owner'}</li>
+							{user.type ? <><li>License: {user.licenseState}</li><li>{user.licenseNo}</li></> : <></>}
+						</ul>
+					</CardBody>
+					<Link
+						to={{
+							pathname: '/pets/add',
+							state: { user },
+						}}
+					>
+						<div id="cardButtons">
+							<Button>Add Pet</Button>
+						</div>
+					</Link>
 					<Link
 						to={{
 							pathname: `/${user._id}/`,
 							state: { user },
 						}}
 					>
-						<DropdownItem>Delete Account</DropdownItem>
+						<div id="cardButtons">
+							<Button>Delete Account</Button>
+						</div>
 					</Link>
-				</DropdownMenu>
-			</Dropdown>
-		</div>
+				</Card>
+			</div>
+		</>
 	);
 };
 
