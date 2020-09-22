@@ -39,8 +39,9 @@ class AddPet extends Component {
 	render() {
 		return (
 				<div style={{width: '100%'}}>
-					<h1>New Pet</h1>
-					<Form style={{width: '100%'}} ref={this.formRef} onSubmit={this.handleSubmit}>
+					<h1 style={{textAlign: 'center'}}>New Pet</h1>
+					<div style={{display: 'flex', justifyContent: 'center'}}>
+					<Form style={{width: '100%', maxWidth: '500px'}} ref={this.formRef} onSubmit={this.handleSubmit}>
 						<FormGroup>
 							<Label for="name">Pet Name</Label>
 							<Input
@@ -117,6 +118,7 @@ class AddPet extends Component {
 						</FormGroup>
 						<Button type="submit">Submit</Button>
 					</Form>
+					</div>
 				</div>
 		);
 	}
