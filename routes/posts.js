@@ -3,6 +3,7 @@ const postsCtrl = require('../controllers/posts');
 
 router.use(require('../config/auth'));
 router.post('/', checkAuth, postsCtrl.create);
+router.post('/comments', checkAuth, postsCtrl.createComment);
 router.get('/', checkAuth, postsCtrl.index);
 
 function checkAuth(req, res, next) {
