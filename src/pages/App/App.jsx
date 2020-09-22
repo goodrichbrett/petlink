@@ -21,7 +21,7 @@ import Search from '../Search/Search';
 
 class App extends Component {
 	state = {
-		user: authService.getUser(),
+		user: '',
 		pets: [],
 		followedPets: [],
 		searchResults: [],
@@ -94,11 +94,12 @@ class App extends Component {
 	};
 
 	async componentDidMount() {
+		const user = await authService.getUser()
 		const pets = await petAPI.getPets();
 		// this needs to be fixed, once we have the follow pet feature.
-		const followedPets = await petAPI.getPets(this.state.user.following);
-		console.log('followed pets', this.state.user);
-		this.setState({ pets, followedPets });
+		const followedPets = await petAPI.getFollowedPets();
+		console.log('followed pets', followedPets);
+		this.setState({ user, pets, followedPets });
 	}
 
 	render() {
