@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import authService from "../../services/authService";
-import { Button } from 'reactstrap';
+import { Button } from "reactstrap";
 
 class SignupForm extends Component {
   state = {
@@ -9,6 +9,7 @@ class SignupForm extends Component {
     email: "",
     password: "",
     passwordConf: "",
+    location: {}
   };
 
   handleChange = (e) => {
@@ -36,13 +37,25 @@ class SignupForm extends Component {
     return !(name && email && password === passwordConf);
   }
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        location: {
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        },
+      });
+    });
+  }
+
   render() {
     const { name, email, password, passwordConf } = this.state;
     return (
       <div>
         <h3>Sign Up</h3>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Name</label><br/>
+          <label htmlFor="name">Name</label>
+          <br />
           <input
             type="text"
             autoComplete="off"
@@ -50,8 +63,11 @@ class SignupForm extends Component {
             value={name}
             name="name"
             onChange={this.handleChange}
-          /><br/><br/>
-          <label htmlFor="email">Email</label><br/>
+          />
+          <br />
+          <br />
+          <label htmlFor="email">Email</label>
+          <br />
           <input
             type="text"
             autoComplete="off"
@@ -59,8 +75,11 @@ class SignupForm extends Component {
             value={email}
             name="email"
             onChange={this.handleChange}
-          /><br/><br/>
-          <label htmlFor="password">Password</label><br/>
+          />
+          <br />
+          <br />
+          <label htmlFor="password">Password</label>
+          <br />
           <input
             type="password"
             autoComplete="off"
@@ -68,8 +87,11 @@ class SignupForm extends Component {
             value={password}
             name="password"
             onChange={this.handleChange}
-          /><br/><br/>
-          <label htmlFor="confirm">Confirm Password</label><br/>
+          />
+          <br />
+          <br />
+          <label htmlFor="confirm">Confirm Password</label>
+          <br />
           <input
             type="password"
             autoComplete="off"
@@ -77,8 +99,14 @@ class SignupForm extends Component {
             value={passwordConf}
             name="passwordConf"
             onChange={this.handleChange}
-          /><br/><br/>
-          <Button color="primary" disabled={this.isFormInvalid()}>Sign Up</Button><br/><br/>
+          />
+          <br />
+          <br />
+          <Button color="primary" disabled={this.isFormInvalid()}>
+            Sign Up
+          </Button>
+          <br />
+          <br />
           <Link to="/">Cancel</Link>
         </form>
       </div>
