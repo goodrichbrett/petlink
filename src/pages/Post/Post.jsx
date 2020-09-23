@@ -18,7 +18,7 @@ class Post extends Component {
 				<p>{this.state.post.content}</p>
 				<h3>Tags</h3>
 				<ul>
-					{this.state.post.tags.map((tag) => (
+					{this.state.post.tags[0].split(',').map((tag) => (
 						<li>{tag}</li>
 					))}
 				</ul>
