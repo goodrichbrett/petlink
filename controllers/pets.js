@@ -74,7 +74,6 @@ function search(req, res) {
 }
 
 function getFollowedPets(req, res) {
-	console.log('following', req.user.following)
 	Pet.find({_id: req.user.following}, (err, pets) => {
 		res.status(200).json(pets);
 	})
