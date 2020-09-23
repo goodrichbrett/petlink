@@ -1,5 +1,4 @@
 import tokenService from '../services/tokenService';
-import axios from 'axios';
 const BASE_URL = '/api/posts/';
 
 export function create(post) {
@@ -72,6 +71,21 @@ export function getApplicablePostsByPetID(id) {
 		`${BASE_URL}${id}`,
 		{
 			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}
+
+export function update(post) {
+	return fetch(
+		`${BASE_URL}${post._id}`,
+		{
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+				Authorization: 'Bearer ' + tokenService.getToken(),
+			},
+			body: JSON.stringify(post),
 		},
 		{ mode: 'cors' }
 	).then((res) => res.json());

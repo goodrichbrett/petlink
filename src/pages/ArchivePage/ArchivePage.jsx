@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import * as postAPI from '../../services/postService';
 
 class ArchivePage extends Component {

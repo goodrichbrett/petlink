@@ -8,6 +8,7 @@ module.exports = {
 	getApplicablePosts,
 	getArchived,
 	getApplicablePostsByPetID,
+	update,
 };
 
 function create(req, res) {
@@ -56,5 +57,13 @@ function getApplicablePostsByPetID(req, res) {
 	console.log('req', req.params.id);
 	Post.find({ pet: req.params.id }, (err, posts) => {
 		res.status(200).json(posts);
+	});
+}
+
+function update(req, res) {
+	Post.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+	}).then((post) => {
+		res.status(200).json(post);
 	});
 }

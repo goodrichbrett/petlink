@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import PetCard from '../../components/PetCard/PetCard';
-import PostSummaryCard from '../../components/PostSummaryCard/PostSummaryCard';
-import * as postAPI from '../../services/postService';
+import PostCard from '../../components/PostCard/PostCard';
 
 class Post extends Component {
 	state = {
@@ -14,16 +12,7 @@ class Post extends Component {
 		return (
 			<div>
 				<h1>{this.state.post.title}</h1>
-				<p>{this.state.post.content}</p>
-				<h3>Tags</h3>
-				<ul>
-					{this.state.post.tags.map((tag) => (
-						<li>{tag}</li>
-					))}
-				</ul>
-				<blockquote>
-					{new Date(this.state.post.date).toLocaleDateString()}
-				</blockquote>
+				<PostCard post={this.state.post} />
 			</div>
 		);
 	}
