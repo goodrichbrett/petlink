@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 import Results from "../../components/Results/Results";
 import Map from "../../components/Map/Map";
-import './Search.css';
+import "./Search.css";
 
 import * as petService from "../../services/petService";
 
@@ -93,10 +93,12 @@ class Search extends Component {
             {this.state.results.length ? (
               <>
                 <h1>Results</h1>
-								<Map 
-								lat={this.props.user.location.lat} 
-								long={this.props.user.location.long}
-								zoom={16}></Map>
+                <Map
+                  lat={this.props.user.location.lat}
+                  long={this.props.user.location.long}
+                  zoom={16}
+                  pets={this.state.results}
+                ></Map>
                 <Results pets={this.state.results} />
               </>
             ) : (
