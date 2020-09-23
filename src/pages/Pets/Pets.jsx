@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getAllUsers } from '../../services/userService';
 import { Link } from 'react-router-dom';
 import * as petAPI from '../../services/petService';
+import SummaryCard from '../../components/SummaryCard/SummaryCard';
 
 class Pets extends Component {
 	state = {
@@ -21,7 +22,7 @@ class Pets extends Component {
 				<h1>Hello. This is a list of all the pets.</h1>
 				{this.state.pets.map((pet) => (
 					<Link to={{ pathname: `/pets/${pet._id}`, pet: { pet } }}>
-						<p>{pet.name}</p>
+						<SummaryCard pet={pet} />
 					</Link>
 				))}
 			</div>
