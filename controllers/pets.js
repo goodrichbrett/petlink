@@ -34,7 +34,9 @@ function create(req, res) {
 }
 
 function index(req, res) {
-	Pet.find({ ownerId: req.user._id }, (err, pets) => {
+	Pet.find({
+		ownerId: req.user._id
+	}, (err, pets) => {
 		res.status(200).json(pets);
 	});
 }
@@ -46,7 +48,9 @@ function deletePet(req, res) {
 }
 
 function update(req, res) {
-	Pet.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
+	Pet.findByIdAndUpdate(req.params.id, req.body, {
+		new: true
+	}).then(
 		(pet) => {
 			res.status(200).json(pet);
 		}
@@ -54,34 +58,47 @@ function update(req, res) {
 }
 
 function search(req, res) {
-	const { type, distance, condition } = req.query;
-	let query = { type };
+	const {
+		type,
+		distance,
+		condition
+	} = req.query;
+	let query = {
+		type
+	};
 	if (condition) {
-		query = { ...query, conditions: condition };
+		query = {
+			...query,
+			conditions: condition
+		};
 	}
 
 	const filteredPets = [];
 
 	Pet.find(query, (err, pets) => {
 		pets.forEach((pet) => {
-			const distanceBetween = haversineDistance(
-				req.user.location.lat,
-				req.user.location.long,
-				pet.location.lat,
-				pet.location.long,
-				true
-			);
-
-			if (distanceBetween <= distance) {
-				filteredPets.push(pet);
+			if (pet.location) {
+				const distanceBetween = haversineDistance(
+					req.user.location.lat,
+					req.user.location.long,
+					pet.location.lat,
+					pet.location.long,
+					true
+				);
+				if (distanceBetween <= distance) {
+					filteredPets.push(pet);
+				}
 			}
 		});
 		res.status(200).json(filteredPets);
+		console.log('------filtered pets ------', filteredPets)
 	});
 }
 
 function getFollowedPets(req, res) {
-	Pet.find({ followers: req.user._id }, (err, pets) => {
+	Pet.find({
+		followers: req.user._id
+	}, (err, pets) => {
 		res.status(200).json(pets);
 	});
 }
