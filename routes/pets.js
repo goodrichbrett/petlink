@@ -6,6 +6,7 @@ router.get('/', checkAuth, petsCtrl.index);
 router.get('/getAllPets', checkAuth, petsCtrl.getAllPets);
 router.get('/following', checkAuth, petsCtrl.getFollowedPets);
 router.get('/search', checkAuth, petsCtrl.search);
+router.get('/:id', checkAuth, petsCtrl.getOne);
 router.post('/', checkAuth, petsCtrl.create);
 router.put('/:id', checkAuth, petsCtrl.update);
 router.delete('/:id', checkAuth, petsCtrl.delete);
