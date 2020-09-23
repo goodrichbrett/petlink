@@ -19,6 +19,7 @@ import AddPost from '../../pages/AddPost/AddPost';
 import LandingContent from '../../components/Landing/Landing';
 import Search from '../Search/Search';
 import ArchivePage from '../ArchivePage/ArchivePage';
+import Post from '../Post/Post';
 
 class App extends Component {
 	state = {
@@ -246,6 +247,21 @@ class App extends Component {
 								user={this.state.user}
 							/>
 						)}
+					/>
+					<Route
+						exact
+						path="/post"
+						render={({ history, location }) =>
+							user ? (
+								<Post
+									history={history}
+									user={user}
+									location={location}
+								/>
+							) : (
+								<Redirect to="/login" />
+							)
+						}
 					/>
 				</div>
 			</>
