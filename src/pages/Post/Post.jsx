@@ -5,15 +5,25 @@ import * as postAPI from '../../services/postService';
 
 class Post extends Component {
 	state = {
-		posts: [],
+		post: this.props.history.location.state.post,
 	};
 
-	async componentDidMount() {}
+	// async componentDidMount() {}
 
 	render() {
 		return (
 			<div>
-				<h1>Post Page</h1>
+				<h1>{this.state.post.title}</h1>
+				<p>{this.state.post.content}</p>
+				<h3>Tags</h3>
+				<ul>
+					{this.state.post.tags.map((tag) => (
+						<li>{tag}</li>
+					))}
+				</ul>
+				<blockquote>
+					{new Date(this.state.post.date).toLocaleDateString()}
+				</blockquote>
 			</div>
 		);
 	}

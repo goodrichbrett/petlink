@@ -12,15 +12,12 @@ const PostSummaryCard = ({ post, pet }) => {
 				state: { post: post },
 			}}
 		>
-			<span
-				id="summaryCard-img"
-				style={{ backgroundColor: `#7DCE82` }}
-			>
+			<span id="summaryCard-img" style={{ backgroundColor: `#7DCE82` }}>
 				{
 					//<img id='petAvatar' src="https://picsum.photos/100/100" alt="" />
 				}
 			</span>
-			<span >
+			<span>
 				<h3>{post.title}</h3>
 				<h3>{new Date(post.date).toLocaleDateString()}</h3>
 			</span>

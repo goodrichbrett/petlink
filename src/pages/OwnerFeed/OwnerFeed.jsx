@@ -26,7 +26,11 @@ class OwnerFeed extends Component {
 				</h1>
 				{this.state.posts.map((post) => (
 					// Update SummaryCard component once we have more information on a pets Post.
-					<PostSummaryCard key={post._id} post={post} />
+					<PostSummaryCard
+						key={post._id}
+						post={post}
+						pet={this.state.pet}
+					/>
 				))}
 			</>
 		);
