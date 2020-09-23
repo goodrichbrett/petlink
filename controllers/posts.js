@@ -7,6 +7,7 @@ module.exports = {
 	createComment,
 	getApplicablePosts,
 	getArchived,
+	getApplicablePostsByPetID,
 };
 
 function create(req, res) {
@@ -39,7 +40,7 @@ function createComment(req, res) {
 }
 
 function getApplicablePosts(req, res) {
-	console.log('req', req);
+	// console.log('req', req);
 	Post.find({ pet: req.user.following }, (err, pets) => {
 		res.status(200).json(pets);
 	});
@@ -47,6 +48,13 @@ function getApplicablePosts(req, res) {
 
 function getArchived(req, res) {
 	Post.find({ archived: true }, (err, posts) => {
+		res.status(200).json(posts);
+	});
+}
+
+function getApplicablePostsByPetID(req, res) {
+	console.log('req', req.params.id);
+	Post.find({ pet: req.params.id }, (err, posts) => {
 		res.status(200).json(posts);
 	});
 }

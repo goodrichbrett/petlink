@@ -6,11 +6,13 @@ import * as postAPI from '../../services/postService';
 class Pet extends Component {
 	state = {
 		posts: [],
+		followedPets: [],
+		pet: this.props.location.state.pet,
 	};
 
 	async componentDidMount() {
-		const posts = await postAPI.getApplicablePosts(
-			this.props.location.state.pet._id
+		const posts = await postAPI.getApplicablePostsByPetID(
+			this.state.pet._id
 		);
 		console.log(posts);
 		this.setState({ posts });
