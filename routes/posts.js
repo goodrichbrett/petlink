@@ -2,7 +2,7 @@ const router = require('express').Router();
 const postsCtrl = require('../controllers/posts');
 
 router.use(require('../config/auth'));
-router.post('/', checkAuth, postsCtrl.create);
+router.post('/:id', checkAuth, postsCtrl.create);
 router.post('/comments', checkAuth, postsCtrl.createComment);
 router.get('/', checkAuth, postsCtrl.index);
 router.get('/archive', checkAuth, postsCtrl.getArchived);

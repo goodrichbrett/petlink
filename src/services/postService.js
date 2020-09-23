@@ -4,7 +4,7 @@ const BASE_URL = '/api/posts/';
 
 export function create(post) {
 	return fetch(
-		BASE_URL,
+		`${BASE_URL}${post.pet}`,
 		{
 			method: 'POST',
 			headers: {

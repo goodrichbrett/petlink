@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const Pet = require('../models/pet');
 
 module.exports = {
 	create,
@@ -11,8 +12,13 @@ module.exports = {
 function create(req, res) {
 	req.body.user = req.user._id;
 	Post.create(req.body).then((post) => {
-		console.log('Post created:\n', post);
-		res.status(200).json(post);
+		Pet.findById(req.params.id, (err, pet) => {
+			pet.posts.push(post._id);
+			console.log('Post created:\n', post);
+			pet.save((err) => {
+				res.status(200).json(post);
+			});
+		});
 	});
 }
 
