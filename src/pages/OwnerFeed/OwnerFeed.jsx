@@ -5,18 +5,14 @@ import * as postAPI from '../../services/postService';
 
 class OwnerFeed extends Component {
 	state = {
-		followedPets: [],
+		followedPets: this.props.followedPets,
 		posts: [],
 		pet: {},
 	};
 	async componentDidMount() {
-		const followedPets = await petAPI.getFollowedPets(
-			this.props.user.following
-		);
-		// const posts = await postAPI.getApplicablePosts(followedPets);
-		const posts = await postAPI.getApplicablePosts(followedPets);
+		const posts = await postAPI.getApplicablePosts(this.state.followedPets);
 		console.log(posts);
-		this.setState({ followedPets, posts });
+		this.setState({ posts });
 	}
 	render() {
 		return (

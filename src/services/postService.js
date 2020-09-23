@@ -48,7 +48,7 @@ export function getOne(post) {
 
 export function getApplicablePosts(followedPets) {
 	return fetch(
-		`${BASE_URL}${followedPets}`,
+		`${BASE_URL}followedPets`,
 		{
 			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
 		},

@@ -39,7 +39,8 @@ function createComment(req, res) {
 }
 
 function getApplicablePosts(req, res) {
-	Post.find({ pet: req.params.followedPets }, (err, pets) => {
+	console.log('req', req);
+	Post.find({ pet: req.user.following }, (err, pets) => {
 		res.status(200).json(pets);
 	});
 }
