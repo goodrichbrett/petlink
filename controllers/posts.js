@@ -5,6 +5,7 @@ module.exports = {
 	index,
 	createComment,
 	getApplicablePosts,
+	getArchived,
 };
 
 function create(req, res) {
@@ -34,5 +35,11 @@ function createComment(req, res) {
 function getApplicablePosts(req, res) {
 	Post.find({ pet: req.user.following }, (err, pets) => {
 		res.status(200).json(pets);
+	});
+}
+
+function getArchived(req, res) {
+	Post.find({ archived: true }, (err, posts) => {
+		res.status(200).json(posts);
 	});
 }

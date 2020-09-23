@@ -55,3 +55,14 @@ export function getApplicablePosts(followedPets) {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+// may need changing after implementing archive functionality
+export function getArchived() {
+	return fetch(
+		`${BASE_URL}/archive`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}

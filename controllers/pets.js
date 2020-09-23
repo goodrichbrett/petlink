@@ -7,7 +7,7 @@ module.exports = {
 	delete: deletePet,
 	update,
 	search,
-	getFollowedPets
+	getFollowedPets,
 };
 
 // function create(req, res) {
@@ -24,7 +24,7 @@ function create(req, res) {
 		User.findById(req.user._id).then((user) => {
 			console.log('USER LOCATION', user.location);
 			pet.location = user.location;
-			pet.save()
+			pet.save();
 			user.pets.push(pet._id);
 			user.save();
 		});
@@ -56,53 +56,58 @@ function search(req, res) {
 	const { type, distance, condition } = req.query;
 	let query = { type };
 	if (condition) {
-		query = {...query, conditions: condition};
+		query = { ...query, conditions: condition };
 	}
 
 	const filteredPets = [];
 
 	Pet.find(query, (err, pets) => {
-		pets.forEach(pet => {
-			const distanceBetween = haversineDistance(req.user.location.lat, req.user.location.long, pet.location.lat, pet.location.long, true)
+		pets.forEach((pet) => {
+			const distanceBetween = haversineDistance(
+				req.user.location.lat,
+				req.user.location.long,
+				pet.location.lat,
+				pet.location.long,
+				true
+			);
 
 			if (distanceBetween <= distance) {
-				filteredPets.push(pet)
+				filteredPets.push(pet);
 			}
-		})
+		});
 		res.status(200).json(filteredPets);
 	});
 }
 
 function getFollowedPets(req, res) {
-	Pet.find({_id: req.user.following}, (err, pets) => {
+	Pet.find({ followers: req.user._id }, (err, pets) => {
 		res.status(200).json(pets);
-	})
+	});
 }
 
-
 const haversineDistance = (lat1, lon1, lat2, lon2, isMiles = false) => {
-  const toRadian = angle => (Math.PI / 180) * angle;
-  const distance = (a, b) => (Math.PI / 180) * (a - b);
-  const RADIUS_OF_EARTH_IN_KM = 6371;
+	const toRadian = (angle) => (Math.PI / 180) * angle;
+	const distance = (a, b) => (Math.PI / 180) * (a - b);
+	const RADIUS_OF_EARTH_IN_KM = 6371;
 
-  const dLat = distance(lat2, lat1);
-  const dLon = distance(lon2, lon1);
+	const dLat = distance(lat2, lat1);
+	const dLon = distance(lon2, lon1);
 
-  lat1 = toRadian(lat1);
-  lat2 = toRadian(lat2);
+	lat1 = toRadian(lat1);
+	lat2 = toRadian(lat2);
 
-  // Haversine Formula
-  const a =
-    Math.pow(Math.sin(dLat / 2), 2) +
-    Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
-  const c = 2 * Math.asin(Math.sqrt(a));
+	// Haversine Formula
+	const a =
+		Math.pow(Math.sin(dLat / 2), 2) +
+		Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
+	const c = 2 * Math.asin(Math.sqrt(a));
 
-  let finalDistance = RADIUS_OF_EARTH_IN_KM * c;
+	let finalDistance = RADIUS_OF_EARTH_IN_KM * c;
 
-  if (isMiles) {
-    finalDistance /= 1.60934;
-  }
+	if (isMiles) {
+		finalDistance /= 1.60934;
+	}
 
-  console.log(finalDistance)
-  return finalDistance;
+	console.log(finalDistance);
+	return finalDistance;
 };
