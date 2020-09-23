@@ -1,27 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { format } from 'date-fns';
+import * as petAPI from '../../services/petService'
+import '../SummaryCard/SummaryCard.css'
 
-const PostSummaryCard = ({ post, pet }) => {
-	return (
-		<Link
+class PostSummaryCard extends React.Component {
+	state = { 
+		pet: {}
+	}
+
+	async componentDidMount() {
+		const pet = await petAPI.getOneById(this.props.post.pet);
+		this.setState({pet});
+	}
+
+	render() { 
+		return (
+		<>
+			<Link style={{margin: '10px', color:'black'}}
 			id="summaryCard"
 			to={{
 				//this should redirect to /post from the news feed and to /pet from the owner profile
 				pathname: '/post',
-				state: { post: post },
-			}}
-		>
-			<span id="summaryCard-img" style={{ backgroundColor: `#7DCE82` }}>
-				{
-					//<img id='petAvatar' src="https://picsum.photos/100/100" alt="" />
-				}
-			</span>
-			<span>
-				<h3>{post.title}</h3>
-				<h3>{new Date(post.date).toLocaleDateString()}</h3>
-			</span>
-		</Link>
-	);
-};
+				state: { post: this.props.post },
+				}}
+			>
+				<span id="summaryCard-img" style={{ backgroundImage: `url(${this.state.pet.avatar})` }} >
+				</span>
+				<span id="summaryCard-content">
+					<h3>{this.state.pet.name}</h3>
+					<h3>{this.props.post.title}</h3>
+				</span>
+			</Link>
+		</> 
+		);
+	}
+}
+ 
 export default PostSummaryCard;

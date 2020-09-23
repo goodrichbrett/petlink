@@ -9,6 +9,7 @@ module.exports = {
 	search,
 	getFollowedPets,
 	getAllPets,
+	getOne
 };
 
 // function create(req, res) {
@@ -134,4 +135,10 @@ function getAllPets(req, res) {
 	Pet.find({}, (err, pets) => {
 		res.status(200).json(pets);
 	});
+}
+
+function getOne(req, res) {
+	Pet.findById(req.params.id, (err, pet) => {
+		res.status(200).json(pet);
+	})
 }
