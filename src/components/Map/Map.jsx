@@ -12,7 +12,7 @@ class Map extends Component {
   componentDidMount() {
     const H = window.H;
     const platform = new H.service.Platform({
-        apikey: "irCnAC760NVxJnjvVz3SzwDJY6n25X4WBL9w_iyptkQ"
+        apikey: process.env.HERE_KEY
     });
 
     const defaultLayers = platform.createDefaultLayers();
