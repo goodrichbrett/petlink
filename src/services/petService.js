@@ -82,3 +82,17 @@ export function getOneById(id) {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+export function getAllPets() {
+	return fetch(
+		`${BASE_URL}getAllPets`,
+		{
+			headers: {
+				Authorization: 'Bearer ' + tokenService.getToken(),
+			},
+		},
+		{
+			mode: 'cors',
+		}
+	).then((res) => res.json());
+}

@@ -8,6 +8,7 @@ module.exports = {
 	update,
 	search,
 	getFollowedPets,
+	getAllPets,
 };
 
 // function create(req, res) {
@@ -111,3 +112,9 @@ const haversineDistance = (lat1, lon1, lat2, lon2, isMiles = false) => {
 	console.log(finalDistance);
 	return finalDistance;
 };
+
+function getAllPets(req, res) {
+	Pet.find({}, (err, pets) => {
+		res.status(200).json(pets);
+	});
+}

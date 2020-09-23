@@ -20,6 +20,7 @@ import LandingContent from '../../components/Landing/Landing';
 import Search from '../Search/Search';
 import ArchivePage from '../ArchivePage/ArchivePage';
 import Post from '../Post/Post';
+import Pets from '../Pets/Pets';
 
 class App extends Component {
 	state = {
@@ -263,6 +264,7 @@ class App extends Component {
 							)
 						}
 					/>
+					<Route exact path="/pets" render={() => <Pets />} />
 				</div>
 			</>
 		);
