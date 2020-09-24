@@ -41,12 +41,6 @@ const InfoCard = ({ user, handleDeleteUser }) => {
 									<i class="far fa-edit"></i>
 								</CardText>
 							</Link>
-							<button
-								type="submit"
-								onClick={() => handleDeleteUser(user._id)}
-							>
-								delete user
-							</button>
 						</div>
 						<ul>
 							<li>{user.email}</li>
@@ -78,7 +72,12 @@ const InfoCard = ({ user, handleDeleteUser }) => {
 						}}
 					>
 						<div id="cardButtons">
-							<Button>Delete Account</Button>
+							<Button
+								type="submit"
+								onClick={() => handleDeleteUser(user._id)}
+							>
+								Delete Account
+							</Button>
 						</div>
 					</Link>
 				</Card>
