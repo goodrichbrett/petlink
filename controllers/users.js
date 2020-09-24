@@ -44,11 +44,11 @@ function followPet(req, res) {
 
 function deleteUser(req, res) {
 	console.log(req.user);
-	// User.findOneAndDelete(req.user._id)
-	// 	.then((user) => {
-	// 		res.status(200).json(user);
-	// 	})
-	// 	.catch((err) => res.json(err));
+	User.findByIdAndDelete(req.user._id)
+		.then((user) => {
+			res.status(200).json(user);
+		})
+		.catch((err) => res.json(err));
 }
 
 function getOne(req, res) {
