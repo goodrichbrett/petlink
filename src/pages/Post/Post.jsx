@@ -30,6 +30,7 @@ class Post extends Component {
 			this.state.commenter,
 			this.state.content
 		);
+		window.location.reload();
 	};
 
 	formRef = React.createRef();
