@@ -76,6 +76,22 @@ export function getApplicablePostsByPetID(id) {
 	).then((res) => res.json());
 }
 
+export function handleAddComment(postId, user, comment) {
+	let body = {commenter: user, content: comment}
+	return fetch(
+		`${BASE_URL}${postId}/comment`,
+		{
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+				Authorization: 'Bearer ' + tokenService.getToken(),
+			},
+			body: JSON.stringify(body),
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}
+
 export function update(post) {
 	return fetch(
 		`${BASE_URL}${post._id}`,
