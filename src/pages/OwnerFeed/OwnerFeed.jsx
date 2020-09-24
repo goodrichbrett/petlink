@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PostSummaryCard from '../../components/PostSummaryCard/PostSummaryCard';
-import * as petAPI from '../../services/petService';
 import * as postAPI from '../../services/postService';
 
 class OwnerFeed extends Component {

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import "./Map.css";
 
 class Map extends Component {
   mapRef = React.createRef();
@@ -8,48 +9,54 @@ class Map extends Component {
   };
 
   componentDidMount() {
-
     const H = window.H;
     const platform = new H.service.Platform({
-        apikey: "gOAo8MW0vb9NX4ohtHG6rSKyRICgs6Grdbp896a0N8M"
+      apikey: `${process.env.HERE_KEY}`,
     });
 
     const defaultLayers = platform.createDefaultLayers();
 
-    // Create an instance of the map
     const map = new H.Map(
       this.mapRef.current,
       defaultLayers.vector.normal.map,
       {
-        // This map is centered over Europe
-        center: { lat: this.props.lat , lng: this.props.long },
-        zoom: 4,
-        pixelRatio: window.devicePixelRatio || 1
+        center: { lat: this.props.lat, lng: this.props.long },
+        zoom: this.props.zoom,
+        pixelRatio: window.devicePixelRatio || 1,
       }
     );
- 
-    // MapEvents enables the event system
-    // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
-    // This variable is unused and is present for explanatory purposes
-    const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
-    // Create the default UI components to allow the user to interact with them
-    // This variable is unused
-    const ui = H.ui.UI.createDefault(map, defaultLayers);
+    const group = new H.map.Group();
+    map.addObject(group)
+
+    // Define a variable holding SVG mark-up that defines an icon image:
+    const svgMarkup =
+      '<svg width="24" height="24" ' +
+      'xmlns="http://www.w3.org/2000/svg">' +
+      '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
+      'height="22" /><text x="12" y="18" font-size="12pt" ' +
+      'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+      'fill="white">P</text></svg>';
+
+      const icon = new H.map.Icon(svgMarkup);
+    {this.props.pets.forEach((pet, idx) => {
+        const coords = { lat: `${pet.location.lat}`, lng: `${pet.location.long}` };
+        const marker = new H.map.Marker(coords, { icon: icon });
+        group.addObject(marker)
+      });}
+
     this.setState({ map });
   }
 
   componentWillUnmount() {
-    // Cleanup after the map to avoid memory leaks when this component exits the page
     this.state.map.dispose();
   }
 
   render() {
     return (
-      // Set a height on the map so it will display
-      <div ref={this.mapRef} style={{ height: "500px" }} />
+      <div className="map" ref={this.mapRef} style={{ height: "400px" }} />
     );
   }
 }
- 
+
 export default Map;

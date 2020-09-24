@@ -8,6 +8,7 @@ router.get('/', checkAuth, postsCtrl.index);
 router.get('/archive', checkAuth, postsCtrl.getArchived);
 router.get('/followedPets', checkAuth, postsCtrl.getApplicablePosts);
 router.get('/:id', checkAuth, postsCtrl.getApplicablePostsByPetID);
+router.put('/:id', checkAuth, postsCtrl.update);
 
 function checkAuth(req, res, next) {
 	if (req.user) return next();

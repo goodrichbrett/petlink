@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 import * as postAPI from '../../services/postService'
 import * as userAPI from '../../services/userService'
+import PostCard from '../../components/PostCard/PostCard';
 
 class Post extends Component {
 	state = {

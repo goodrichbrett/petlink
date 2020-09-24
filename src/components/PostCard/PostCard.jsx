@@ -1,15 +1,6 @@
 import React from 'react';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import * as userAPI from '../../services/userService';
-import {
-	Card,
-	CardImg,
-	CardText,
-	CardBody,
-	CardTitle,
-	Button,
-} from 'reactstrap';
-import { PromiseProvider } from 'mongoose';
 
 const PostCard = ({ post, user }) => {
 	return (
@@ -32,9 +23,16 @@ const PostCard = ({ post, user }) => {
 							<CardTitle>
 								<b>{post.title}</b>
 							</CardTitle>
-							<CardText>
-								<i class="far fa-edit"></i>
-							</CardText>
+							<Link
+								to={{
+									pathname: '/edit-post',
+									state: { post },
+								}}
+							>
+								<CardText>
+									<i class="far fa-edit"></i>
+								</CardText>
+							</Link>
 						</div>
 						<p>{post.content}</p>
 						<blockquote>

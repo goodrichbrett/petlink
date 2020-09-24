@@ -9,6 +9,7 @@ module.exports = {
 	getApplicablePosts,
 	getArchived,
 	getApplicablePostsByPetID,
+	update,
 };
 
 function create(req, res) {
@@ -25,7 +26,7 @@ function create(req, res) {
 }
 
 function index(req, res) {
-	Post.find({ private: false }, (err, posts) => {
+	Post.find({ private: false, archived: false }, (err, posts) => {
 		res.status(200).json(posts);
 	});
 }
@@ -42,13 +43,14 @@ function createComment(req, res) {
 
 function getApplicablePosts(req, res) {
 	// console.log('req', req);
-	Post.find({ pet: req.user.following })
+	Post.find({ archived: false, pet: req.user.following })
 		.populate({
 			path: 'comments',
 			// Get friends of friends - populate the 'friends' array for every friend
 			populate: { path: 'commenter', select: 'name' }
 		  })
-		.then(pets => res.status(200).json(pets));
+		.then(pets => res.status(200).json(pets))
+	});
 }
 
 function getArchived(req, res) {
@@ -59,7 +61,18 @@ function getArchived(req, res) {
 
 function getApplicablePostsByPetID(req, res) {
 	console.log('req', req.params.id);
-	Post.find({ pet: req.params.id }, (err, posts) => {
-		res.status(200).json(posts);
+	Post.find(
+		{ pet: req.params.id, private: false, archived: false },
+		(err, posts) => {
+			res.status(200).json(posts);
+		}
+	);
+}
+
+function update(req, res) {
+	Post.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+	}).then((post) => {
+		res.status(200).json(post);
 	});
 }

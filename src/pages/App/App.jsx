@@ -21,6 +21,7 @@ import Search from '../Search/Search';
 import ArchivePage from '../ArchivePage/ArchivePage';
 import Post from '../Post/Post';
 import Pets from '../Pets/Pets';
+import EditPost from '../EditPost/EditPost';
 
 class App extends Component {
 	state = {
@@ -28,6 +29,7 @@ class App extends Component {
 		pets: [],
 		followedPets: [],
 		searchResults: [],
+		posts: [],
 	};
 
 	handleLogout = () => {
@@ -59,6 +61,11 @@ class App extends Component {
 		// 	}),
 		// 	() => this.props.history.push('/')
 		// );
+	};
+
+	handleUpdatePost = async (updatedPostData) => {
+		const updatedPost = await postAPI.update(updatedPostData);
+		this.setState({ updatedPost }, () => this.props.history.push('/'));
 	};
 
 	handleUpdatePet = async (updatedPetData) => {
@@ -258,6 +265,21 @@ class App extends Component {
 									history={history}
 									user={user}
 									location={location}
+								/>
+							) : (
+								<Redirect to="/login" />
+							)
+						}
+					/>
+					<Route
+						exact
+						path="/edit-post"
+						render={({ history, location }) =>
+							user ? (
+								<EditPost
+									history={history}
+									location={location}
+									handleUpdatePost={this.handleUpdatePost}
 								/>
 							) : (
 								<Redirect to="/login" />
