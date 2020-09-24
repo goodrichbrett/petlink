@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
-import * as postAPI from '../../services/postService'
-import * as userAPI from '../../services/userService'
+import { Button, Form, FormGroup, Input, CardText } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import * as postAPI from '../../services/postService';
+import * as userAPI from '../../services/userService';
 import PostCard from '../../components/PostCard/PostCard';
 
 class Post extends Component {
 	state = {
 		post: this.props.history.location.state.post,
 		commenter: this.props.user._id,
-		content: ''
+		content: '',
 	};
 
 	// async componentDidMount() {
@@ -24,14 +25,19 @@ class Post extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		postAPI.handleAddComment(this.state.post._id, this.state.commenter, this.state.content);
+		postAPI.handleAddComment(
+			this.state.post._id,
+			this.state.commenter,
+			this.state.content
+		);
 	};
 
 	formRef = React.createRef();
 	render() {
+		const thisPost = this.state.post;
 		return (
 			<div>
-				<div style={{maxWidth: '500px'}}>
+				<div style={{ maxWidth: '500px' }}>
 					<h1>{this.state.post.title}</h1>
 					<p>{new Date(this.state.post.date).toLocaleDateString()}</p>
 					<p>{this.state.post.content}</p>
@@ -42,12 +48,17 @@ class Post extends Component {
 						))}
 					</ul>
 				</div>
-				<div style={{maxWidth: '500px', borderBottom:'solid 1px black'}}>
+				<div
+					style={{
+						maxWidth: '500px',
+						borderBottom: 'solid 1px black',
+					}}
+				>
 					<h3>Comments</h3>
 					<Form
 						ref={this.formRef}
 						onSubmit={this.handleSubmit}
-						style={{paddingLeft: '0', width: '100%'}}
+						style={{ paddingLeft: '0', width: '100%' }}
 					>
 						<FormGroup>
 							<Input
@@ -59,19 +70,35 @@ class Post extends Component {
 								required
 							/>
 						</FormGroup>
-						<Button type='submit'>Add Comment</Button>
+						<Button type="submit">Add Comment</Button>
 					</Form>
+
+					{this.state.commenter &&
+						this.state.commenter === this.state.post.user && (
+							<>
+								<Link
+									to={{
+										pathname: '/edit-post',
+										state: { thisPost },
+									}}
+								>
+									<CardText>
+										<i class="far fa-edit"></i>
+									</CardText>
+								</Link>
+							</>
+						)}
 				</div>
-				{this.state.post.comments.length ? 
+				{this.state.post.comments.length ? (
 					this.state.post.comments.map((el) => (
-					<div>
-						<h4>{el.commenter?.name}</h4>
-						<p>{el.content}</p>
-					</div>
+						<div>
+							<h4>{el.commenter?.name}</h4>
+							<p>{el.content}</p>
+						</div>
 					))
-					: 
-					<p style={{margin: '1em 1em 1em 0'}}>No comments yet.</p>
-				}
+				) : (
+					<p style={{ margin: '1em 1em 1em 0' }}>No comments yet.</p>
+				)}
 			</div>
 		);
 	}
