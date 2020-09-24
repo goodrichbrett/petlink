@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const Pet = require('../models/pet');
+const mongoose = require('mongoose');
 
 module.exports = {
 	create,
@@ -32,18 +33,22 @@ function index(req, res) {
 function createComment(req, res) {
 	Post.findById(req.params.id, (err, post) => {
 		post.comments.push(req.body);
-		console.log(post);
 		post.save((err) => {
 			res.status(200).json(post);
+			console.log('error', err)
 		});
 	});
 }
 
 function getApplicablePosts(req, res) {
 	// console.log('req', req);
-	Post.find({ pet: req.user.following }, (err, pets) => {
-		res.status(200).json(pets);
-	});
+	Post.find({ pet: req.user.following })
+		.populate({
+			path: 'comments',
+			// Get friends of friends - populate the 'friends' array for every friend
+			populate: { path: 'commenter', select: 'name' }
+		  })
+		.then(pets => res.status(200).json(pets));
 }
 
 function getArchived(req, res) {

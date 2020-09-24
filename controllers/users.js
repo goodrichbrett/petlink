@@ -6,7 +6,8 @@ module.exports = {
 	showProfile,
 	update,
 	delete: deleteUser,
-	followPet
+	followPet,
+	getOne
 };
 
 function index(req, res) {
@@ -45,4 +46,10 @@ function deleteUser(req, res) {
 	User.findOneAndDelete(req.params.id).then((pet) => {
 		res.status(200).json(pet);
 	});
+}
+
+function getOne(req, res) {
+	User.findById(req.params.id, (err, user) => {
+		res.status(200).json(user.name);
+	})
 }

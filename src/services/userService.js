@@ -60,3 +60,13 @@ export function deleteOne(id) {
 		{ mode: 'cors' }
 	).then((res) => res.json());
 }
+
+export function getOne(userId) {
+	return fetch(
+		`${BASE_URL}${userId}`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
+}
