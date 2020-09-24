@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import * as userPhotoAPI from '../../services/userPhotoService';
 
 class EditPet extends Component {
   state = {
@@ -14,14 +15,23 @@ class EditPet extends Component {
     };
     this.setState({
       formData,
-      // invalidForm: !this.formRef.current.checkValidity(),
     });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     this.props.handleUpdateUser(this.state.formData);
-    //history.push("/pet"); pass pet id?
+  };
+
+  handleUpload = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const fileData = new FormData();
+    fileData.append('image', file);
+    const imageData = await userPhotoAPI.uploadUserPhoto(fileData)
+    const imageUrl = imageData.data.imageUrl;
+    const formData = {...this.state.formData, avatar:imageUrl}
+    this.setState({formData})
   };
 
   formRef = React.createRef();
@@ -50,13 +60,12 @@ class EditPet extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="avatar">Picture</Label>
+              <Label for="image">Upload Photo</Label>
               <Input
-                onChange={this.handleChange}
-                type="text"
-                name="avatar"
-                value={this.state.user.avatar}
-              />
+                type="file"
+                name="image"
+                onChange={this.handleUpload}
+              ></Input>
             </FormGroup>
             <FormGroup>
               <Label for="isVet">Are You A Vet?</Label>
@@ -73,7 +82,6 @@ class EditPet extends Component {
                   No
                 </option>
               </Input>
-              {/* Add yes or no options here! */}
             </FormGroup>
             <FormGroup>
               <Label for="licenseNo">License Number</Label>
@@ -124,13 +132,12 @@ class EditPet extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="avatar">Picture</Label>
+              <Label for="image">Upload Photo</Label>
               <Input
-                onChange={this.handleChange}
-                type="text"
-                name="avatar"
-                value={this.state.formData.avatar}
-              />
+                type="file"
+                name="image"
+                onChange={this.handleUpload}
+              ></Input>
             </FormGroup>
             <FormGroup>
               <Label for="isVet">Are You A Vet?</Label>
@@ -147,7 +154,6 @@ class EditPet extends Component {
                   No
                 </option>
               </Input>
-              {/* Add yes or no options here! */}
             </FormGroup>
           </>
         )}

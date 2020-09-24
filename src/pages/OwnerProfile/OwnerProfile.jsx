@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import SummaryCard from '../../components/SummaryCard/SummaryCard';
 import { Link } from 'react-router-dom';
-// import * as petAPI from '../../services/petService';
-// import Pet from '../Pet/Pet';
 import InfoCard from '../../components/InfoCard/InfoCard';
 import {
 	Card,
@@ -15,8 +13,6 @@ import {
 
 class OwnerProfile extends Component {
 	state = {};
-
-	// pass to /pet through link
 
 	render() {
 		return (
