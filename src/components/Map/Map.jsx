@@ -27,7 +27,7 @@ class Map extends Component {
     );
 
     const group = new H.map.Group();
-    map.addObject(group)
+    map.addObject(group);
 
     // Define a variable holding SVG mark-up that defines an icon image:
     const svgMarkup =
@@ -38,12 +38,16 @@ class Map extends Component {
       'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
       'fill="white">P</text></svg>';
 
-      const icon = new H.map.Icon(svgMarkup);
-    {this.props.pets.forEach((pet, idx) => {
-        const coords = { lat: `${pet.location.lat}`, lng: `${pet.location.long}` };
-        const marker = new H.map.Marker(coords, { icon: icon });
-        group.addObject(marker)
-      });}
+    const icon = new H.map.Icon(svgMarkup);
+
+    this.props.pets.forEach((pet, idx) => {
+      const coords = {
+        lat: `${pet.location.lat}`,
+        lng: `${pet.location.long}`,
+      };
+      const marker = new H.map.Marker(coords, { icon: icon });
+      group.addObject(marker);
+    });
 
     this.setState({ map });
   }

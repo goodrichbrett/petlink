@@ -113,7 +113,6 @@ class App extends Component {
 
 	handleSearch = async (formData) => {
 		const searchResults = await petAPI.getApplicable(formData);
-		console.log('applicable', searchResults);
 		this.setState({ searchResults });
 	};
 
@@ -121,9 +120,7 @@ class App extends Component {
 		const user = await authService.getUser();
 		if (user) {
 			const pets = await petAPI.getPets();
-			// this needs to be fixed, once we have the follow pet feature.
 			const followedPets = await petAPI.getFollowedPets();
-			console.log('followed pets', followedPets);
 			this.setState({ user, pets, followedPets });
 		}
 	}

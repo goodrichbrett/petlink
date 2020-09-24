@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './InfoCard.css';
 import {
@@ -38,7 +38,7 @@ const InfoCard = ({ user, handleDeleteUser }) => {
 								}}
 							>
 								<CardText>
-									<i class="far fa-edit"></i>
+									<i className="far fa-edit"></i>
 								</CardText>
 							</Link>
 						</div>
