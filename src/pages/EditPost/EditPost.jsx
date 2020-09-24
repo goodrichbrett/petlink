@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 class EditPost extends Component {
 	state = {
@@ -15,14 +14,12 @@ class EditPost extends Component {
 		};
 		this.setState({
 			formData,
-			// invalidForm: !this.formRef.current.checkValidity(),
 		});
 	};
 
 	handleSubmit = async (e) => {
 		e.preventDefault();
 		this.props.handleUpdatePost(this.state.formData);
-		//this.props.history.push("/pet");
 	};
 
 	formRef = React.createRef();
