@@ -43,7 +43,7 @@ function createComment(req, res) {
 
 function getApplicablePosts(req, res) {
 	// console.log('req', req);
-	Post.find({ archived: false, pet: req.user.following })
+	Post.find({ archived: false })
 		.populate({
 			path: 'comments',
 			// Get friends of friends - populate the 'friends' array for every friend
