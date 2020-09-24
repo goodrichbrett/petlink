@@ -72,8 +72,8 @@ class Search extends Component {
                 name="distance"
                 value={this.state.formData.distance}
               >
-                {this.state.distance.map((distance) => (
-                  <option>{distance}</option>
+                {this.state.distance.map((distance, idx) => (
+                  <option key={idx}>{distance}</option>
                 ))}
               </Input>
             </FormGroup>
