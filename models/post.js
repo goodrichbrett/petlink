@@ -17,8 +17,14 @@ const postSchema = new Schema({
 	tags: Array,
 	date: Date,
 	comments: [commentSchema],
-	archived: Boolean,
-	private: Boolean,
+	archived: {
+		type: Boolean,
+		default: false,
+	},
+	private: {
+		type: Boolean,
+		default: false,
+	},
 	user: { type: Schema.Types.ObjectId, ref: 'User' },
 	pet: { type: Schema.Types.ObjectId, ref: 'Pet' },
 });
