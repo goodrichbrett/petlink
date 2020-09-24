@@ -50,9 +50,9 @@ export function followPet(pet) {
 	).then((res) => res.json());
 }
 
-export function deleteOne(id) {
+export function deleteOne() {
 	return fetch(
-		`${BASE_URL}${id}`,
+		`${BASE_URL}`,
 		{
 			method: 'DELETE',
 			headers: { Authorization: 'Bearer ' + tokenService.getToken() },

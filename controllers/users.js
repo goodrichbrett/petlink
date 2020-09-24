@@ -24,12 +24,10 @@ function showProfile(req, res) {
 
 function update(req, res) {
 	User.findByIdAndUpdate(req.params.id, req.body, {
-		new: true
-	}).then(
-		(user) => {
-			res.status(200).json(user);
-		}
-	);
+		new: true,
+	}).then((user) => {
+		res.status(200).json(user);
+	});
 }
 
 function followPet(req, res) {
@@ -45,11 +43,12 @@ function followPet(req, res) {
 }
 
 function deleteUser(req, res) {
-	User.findOneAndDelete(req.params.id)
-		.then((user) => {
-			res.status(200).json(user);
-		})
-		.catch((err) => res.json(err));
+	console.log(req.user);
+	// User.findOneAndDelete(req.user._id)
+	// 	.then((user) => {
+	// 		res.status(200).json(user);
+	// 	})
+	// 	.catch((err) => res.json(err));
 }
 
 function getOne(req, res) {
