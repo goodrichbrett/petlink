@@ -14,7 +14,6 @@ class Pet extends Component {
 		const posts = await postAPI.getApplicablePostsByPetID(
 			this.state.pet._id
 		);
-		console.log(posts);
 		this.setState({ posts });
 	}
 

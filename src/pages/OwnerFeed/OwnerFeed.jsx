@@ -10,7 +10,6 @@ class OwnerFeed extends Component {
 	};
 	async componentDidMount() {
 		const posts = await postAPI.getApplicablePosts(this.state.followedPets);
-		console.log(posts);
 		this.setState({ posts });
 	}
 	render() {
