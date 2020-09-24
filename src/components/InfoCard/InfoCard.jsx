@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './InfoCard.css'
+import './InfoCard.css';
 import {
 	Card,
 	CardImg,
@@ -10,7 +10,7 @@ import {
 	Button,
 } from 'reactstrap';
 
-const InfoCard = ({ user }) => {
+const InfoCard = ({ user, handleDeleteUser }) => {
 	return (
 		<>
 			<div id="usercard">
@@ -41,11 +41,24 @@ const InfoCard = ({ user }) => {
 									<i class="far fa-edit"></i>
 								</CardText>
 							</Link>
+							<button
+								type="submit"
+								onClick={() => handleDeleteUser(user._id)}
+							>
+								delete user
+							</button>
 						</div>
 						<ul>
 							<li>{user.email}</li>
 							<li>{user.type ? 'Vet' : 'Pet Owner'}</li>
-							{user.type ? <><li>License: {user.licenseState}</li><li>{user.licenseNo}</li></> : <></>}
+							{user.type ? (
+								<>
+									<li>License: {user.licenseState}</li>
+									<li>{user.licenseNo}</li>
+								</>
+							) : (
+								<></>
+							)}
 						</ul>
 					</CardBody>
 					<Link

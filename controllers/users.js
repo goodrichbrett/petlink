@@ -43,9 +43,11 @@ function followPet(req, res) {
 }
 
 function deleteUser(req, res) {
-	User.findOneAndDelete(req.params.id).then((pet) => {
-		res.status(200).json(pet);
-	});
+	User.findOneAndDelete(req.params.id)
+		.then((user) => {
+			res.status(200).json(user);
+		})
+		.catch((err) => res.json(err));
 }
 
 function getOne(req, res) {

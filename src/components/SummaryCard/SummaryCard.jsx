@@ -14,10 +14,9 @@ const SummaryCard = ({ pet }) => {
 			<span
 				id="summaryCard-img"
 				style={{ backgroundImage: `url(${pet.avatar})` }}
-			>
-			</span>
+			></span>
 			<span id="summaryCard-content">
-				<h3 style={{padding: '0.5em'}}>{pet.name}</h3>
+				<h3 style={{ padding: '0.5em' }}>{pet.name}</h3>
 			</span>
 		</Link>
 	);

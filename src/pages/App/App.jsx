@@ -41,6 +41,20 @@ class App extends Component {
 		this.setState({ user: authService.getUser() });
 	};
 
+	handleDeleteUser = async (id) => {
+		if (authService.getUser()) {
+			await userAPI.deleteOne(id);
+			this.setState(
+				(state) => ({
+					user: '',
+				}),
+				() => this.props.history.push('/')
+			);
+		} else {
+			this.props.history.push('/login');
+		}
+	};
+
 	handleAddPet = async (newPetData) => {
 		const newPet = await petAPI.create(newPetData);
 		newPet.addedBy = this.state.user._id;
@@ -105,12 +119,12 @@ class App extends Component {
 
 	async componentDidMount() {
 		const user = await authService.getUser();
-		if(user) {
-		const pets = await petAPI.getPets();
-		// this needs to be fixed, once we have the follow pet feature.
-		const followedPets = await petAPI.getFollowedPets();
-		console.log('followed pets', followedPets);
-		this.setState({ user, pets, followedPets });
+		if (user) {
+			const pets = await petAPI.getPets();
+			// this needs to be fixed, once we have the follow pet feature.
+			const followedPets = await petAPI.getFollowedPets();
+			console.log('followed pets', followedPets);
+			this.setState({ user, pets, followedPets });
 		}
 	}
 
@@ -213,6 +227,7 @@ class App extends Component {
 								pets={this.state.pets}
 								followedPets={this.state.followedPets}
 								location={location}
+								handleDeleteUser={this.handleDeleteUser}
 							/>
 						)}
 					/>

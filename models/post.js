@@ -10,7 +10,7 @@ const postSchema = new Schema({
 	title: {
 		type: String,
 	},
-	postType: String, //behavior or symptom
+	postType: String,
 	content: {
 		type: String,
 	},
