@@ -20,6 +20,7 @@ module.exports = {
 // }
 
 function create(req, res) {
+	req.body.type = req.body.type.toLowerCase();
 	req.body.ownerId = req.user._id;
 	Pet.create(req.body).then((pet) => {
 		console.log('Pet created:\n', pet);
