@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Input, CardText } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import * as postAPI from '../../services/postService';
-<<<<<<< HEAD
-import * as userAPI from '../../services/userService';
-import PostCard from '../../components/PostCard/PostCard';
-=======
-
->>>>>>> 42dee5acb042123e90c7926bda34ef648ba8f90c
 class Post extends Component {
 	state = {
 		post: this.props.history.location.state.post,
