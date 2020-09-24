@@ -36,7 +36,7 @@ function createComment(req, res) {
 		post.comments.push(req.body);
 		post.save((err) => {
 			res.status(200).json(post);
-			console.log('error', err)
+			console.log('error', err);
 		});
 	});
 }
@@ -47,10 +47,9 @@ function getApplicablePosts(req, res) {
 		.populate({
 			path: 'comments',
 			// Get friends of friends - populate the 'friends' array for every friend
-			populate: { path: 'commenter', select: 'name' }
-		  })
-		.then(pets => res.status(200).json(pets))
-	});
+			populate: { path: 'commenter', select: 'name' },
+		})
+		.then((pets) => res.status(200).json(pets));
 }
 
 function getArchived(req, res) {
