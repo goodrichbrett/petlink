@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import SummaryCard from '../../components/SummaryCard/SummaryCard';
 import { Link } from 'react-router-dom';
 import InfoCard from '../../components/InfoCard/InfoCard';
+import {
+	Card,
+	CardImg,
+	CardText,
+	CardBody,
+	CardTitle,
+	Button,
+} from 'reactstrap';
 
 class OwnerProfile extends Component {
 	state = {};
@@ -20,7 +28,26 @@ class OwnerProfile extends Component {
 					<SummaryCard pet={pet} />
 				))}
 
-				<h2 style={{ margin: '1em 0 1em 0', textAlign: 'center' }}>Following</h2>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'space-between',
+								alignItems: 'center'
+							}}
+						>
+							<CardTitle>
+								<h1>Following</h1>
+							</CardTitle>
+							<Link
+								to={{
+									pathname: '/search'
+								}}
+							>
+								<CardText>
+									<i class="fas fa-search"></i>
+								</CardText>
+							</Link>
+						</div>
 				{this.props.followedPets.map((followedPet) => (
 					<Link
 						to={{

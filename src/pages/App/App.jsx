@@ -105,11 +105,13 @@ class App extends Component {
 
 	async componentDidMount() {
 		const user = await authService.getUser();
+		if(user) {
 		const pets = await petAPI.getPets();
 		// this needs to be fixed, once we have the follow pet feature.
 		const followedPets = await petAPI.getFollowedPets();
 		console.log('followed pets', followedPets);
 		this.setState({ user, pets, followedPets });
+		}
 	}
 
 	render() {

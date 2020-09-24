@@ -10,6 +10,7 @@ const singleUpload = upload.single('image')
 router.use(require('../config/auth'));
 router.get('/', checkAuth, usersCtrl.index);
 router.get('/users/:id/profile', checkAuth, usersCtrl.showProfile);
+router.get('/:id', checkAuth, usersCtrl.getOne);
 router.put('/:id', checkAuth, usersCtrl.update);
 router.put('/pet/:id', checkAuth, usersCtrl.followPet)
 router.delete('/:id', checkAuth, usersCtrl.delete);

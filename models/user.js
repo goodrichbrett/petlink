@@ -10,10 +10,7 @@ const userSchema = new Schema(
 		email: { type: String, required: true, lowercase: true, unique: true },
 		password: String,
 		isVet: Boolean,
-		avatar: {
-			type: String,
-			default: null,
-		},
+		avatar: String,
 		location: {
 			type: Object,
 			default: null,
