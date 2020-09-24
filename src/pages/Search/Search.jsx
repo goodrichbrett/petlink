@@ -46,10 +46,10 @@ class Search extends Component {
   formRef = React.createRef();
   render() {
     return (
-      <>
+      <div style={{width: '100%'}}>
         <Container>
           <h1>Search Page</h1>
-          <Form ref={this.formRef} onSubmit={this.handleSubmit}>
+          <Form ref={this.formRef} onSubmit={this.handleSubmit} style={{width: '100%'}}>
             <FormGroup>
               <Label for="type">Animal Type:</Label>
               <Input
@@ -106,7 +106,7 @@ class Search extends Component {
             )}
           </section>
         </Container>
-      </>
+      </div>
     );
   }
 }
