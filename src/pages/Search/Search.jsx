@@ -9,10 +9,10 @@ import * as petService from "../../services/petService";
 class Search extends Component {
   state = {
     distance: [1, 2, 3, 4, 5],
-    animalType: ["Dog", "Cat", "Snake", "Rabbit"],
+    animalType: ["dog", "cat", "snake", "rabbit"],
     searchResponse: null,
     formData: {
-      type: "Dog",
+      type: "dog",
       distance: "1",
       condition: "",
     },
