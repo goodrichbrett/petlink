@@ -2,14 +2,7 @@ import React, { Component } from 'react';
 import SummaryCard from '../../components/SummaryCard/SummaryCard';
 import { Link } from 'react-router-dom';
 import InfoCard from '../../components/InfoCard/InfoCard';
-import {
-	Card,
-	CardImg,
-	CardText,
-	CardBody,
-	CardTitle,
-	Button,
-} from 'reactstrap';
+import {CardTitle, CardText} from 'reactstrap'
 
 class OwnerProfile extends Component {
 	state = {};
@@ -35,8 +28,8 @@ class OwnerProfile extends Component {
 				<h2 style={{ margin: '1em 0 1em 0', textAlign: 'center' }}>
 					Pets
 				</h2>
-				{this.props.pets.map((pet) => (
-					<SummaryCard pet={pet} />
+				{this.props.pets.map((pet, idx) => (
+					<SummaryCard key={idx} pet={pet} />
 				))}
 
 				<div
@@ -55,7 +48,7 @@ class OwnerProfile extends Component {
 						}}
 					>
 						<CardText>
-							<i class="fas fa-search"></i>
+							<i className="fas fa-search"></i>
 						</CardText>
 					</Link>
 				</div>
