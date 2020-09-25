@@ -21,11 +21,12 @@ class Map extends Component {
       defaultLayers.vector.normal.map,
       {
         center: { lat: this.props.lat, lng: this.props.long },
-        zoom: this.props.zoom,
+        zoom: 16,
         pixelRatio: window.devicePixelRatio || 1,
       }
     );
 
+    // Map Group
     const group = new H.map.Group();
     map.addObject(group);
 
