@@ -24,6 +24,8 @@ In most cases, online articles can shed light on what might be happening with yo
 -   MongoDB
 -   React
 -   HERE Maps
+-   AWS-SDK
+-   Multer
 
 ## User Stories
 
