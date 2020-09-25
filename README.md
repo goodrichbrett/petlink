@@ -2,6 +2,10 @@
 
 ## [PetLink Deployed](https://pet-link.herokuapp.com/)
 
+![Pet Link News Feed](./public/newsfeed.png)
+
+![Pet Link Post Page](./public/post.png)
+
 ## Project Inspiration
 
 The health of our pets is very important. They cannot communicate the same way we do so it is our responsibility as pet owners to stay vigilant of any symptoms and track suspicious behaviors carefully.

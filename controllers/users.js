@@ -31,8 +31,9 @@ function update(req, res) {
 }
 
 function followPet(req, res) {
+	console.log(req.params);
 	User.findById(req.user._id).then((user) => {
-		user.following.push(req.body._id);
+		user.following.push(req.params.id);
 		user.save();
 	});
 	Pet.findById(req.body._id).then((pet) => {

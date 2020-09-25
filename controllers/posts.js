@@ -43,6 +43,7 @@ function createComment(req, res) {
 
 function getApplicablePosts(req, res) {
 	// console.log('req', req);
+	console.log(req.user);
 	Post.find({ archived: false })
 		.populate({
 			path: 'comments',
