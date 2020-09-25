@@ -96,7 +96,6 @@ class Search extends Component {
                 <Map
                   lat={this.props.user.location.lat}
                   long={this.props.user.location.long}
-                  zoom={16}
                   pets={this.state.results}
                 ></Map>
                 <Results pets={this.state.results} />
