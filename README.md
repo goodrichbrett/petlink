@@ -23,9 +23,7 @@ In most cases, online articles can shed light on what might be happening with yo
 -   Mongoose
 -   MongoDB
 -   React
--   Formik (pending)
--   React Geolocated (pending)
--   React Toastify
+-   HERE Maps
 
 ## User Stories
 
@@ -45,7 +43,7 @@ In most cases, online articles can shed light on what might be happening with yo
 
 -   Make a fully functioning Progressive Web Application
 -   Add conditional pop up notifactions to help user remember important tasks
--   Use Geolocation to bring users in close vecinity together
+-   Improve Map Functionality 
 
 ## Entity Relationship Diagram
 
