@@ -1,6 +1,5 @@
 const Post = require('../models/post');
 const Pet = require('../models/pet');
-const mongoose = require('mongoose');
 
 module.exports = {
 	create,
