@@ -32,6 +32,7 @@ class SignupForm extends Component {
     }
   };
 
+
   isFormInvalid() {
     const { name, email, password, passwordConf } = this.state;
     return !(name && email && password === passwordConf);

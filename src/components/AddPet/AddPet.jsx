@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import * as petPhotoAPI from '../../services/petPhotoService';
 
 class AddPet extends Component {
 	state = {
@@ -19,7 +20,7 @@ class AddPet extends Component {
 			followers: [],
 		},
 	};
-
+  
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.handleAddPet(this.state.formData);
@@ -32,9 +33,19 @@ class AddPet extends Component {
 		};
 		this.setState({
 			formData,
-			// invalidForm: !this.formRef.current.checkValidity(),
 		});
 	};
+
+	handleUpload = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const fileData = new FormData();
+    fileData.append('image', file);
+    const imageData = await petPhotoAPI.uploadUserPhoto(fileData)
+    const imageUrl = imageData.data.imageUrl;
+    const formData = {...this.state.formData, avatar:imageUrl}
+    this.setState({formData})
+  };
 
 	formRef = React.createRef();
 	render() {
@@ -107,16 +118,13 @@ class AddPet extends Component {
 							></Input>
 						</FormGroup>
 						<FormGroup>
-							<Label for="avatar">Pet Picture Link</Label>
-							<Input
-								onChange={this.handleChange}
-								value={this.state.formData.avatar}
-								type="text"
-								name="avatar"
-								id="avatar"
-								required
-							></Input>
-						</FormGroup>
+              <Label for="image">Upload Photo</Label>
+              <Input
+                type="file"
+                name="image"
+								onChange={this.handleUpload}
+              ></Input>
+            </FormGroup>
 						<Link
 							to={{
 								pathname: '/',
