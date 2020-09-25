@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-
+import { format, parse } from 'date-fns';
 class EditPost extends Component {
 	state = {
-		post: this.props.history.location.state.post,
-		formData: this.props.history.location.state.post,
+		post: this.props.history.location.state.thisPost,
+		formData: this.props.history.location.state.thisPost,
 	};
-
 	handleChange = (e) => {
 		const formData = {
 			...this.state.formData,
@@ -16,18 +15,28 @@ class EditPost extends Component {
 			formData,
 		});
 	};
-
+	handleDateChange = (e) => {
+		const dateStr = e.target.value;
+		this.setState(({ formData }) => ({
+			formData: {
+				...formData,
+				date: parse(dateStr, 'yyyy-MM-dd', new Date()),
+			},
+		}));
+		// this.setState({
+		// 	date: parse(e.target.value, 'yyyy-MM-dd', new Date()),
+		// });
+	};
 	handleSubmit = async (e) => {
 		e.preventDefault();
 		this.props.handleUpdatePost(this.state.formData);
 	};
-
 	formRef = React.createRef();
 	render() {
 		return (
 			<div style={{ width: '100%' }}>
 				<h1 style={{ margin: '0 0 1em 0', textAlign: 'center' }}>
-					Add Post
+					Edit Post
 				</h1>
 				<Form
 					ref={this.formRef}
@@ -41,7 +50,7 @@ class EditPost extends Component {
 							type="text"
 							name="title"
 							id="title"
-							placeholder="Add a title to the behavior or symptom"
+							value={this.state.formData.title}
 							required
 						/>
 					</FormGroup>
@@ -52,8 +61,9 @@ class EditPost extends Component {
 							type="select"
 							name="postType"
 							id="postType"
+							value={this.state.formData.postType}
 						>
-							<option selected>Behavior</option>
+							<option>Behavior</option>
 							<option>Symptom</option>
 						</Input>
 					</FormGroup>
@@ -63,6 +73,7 @@ class EditPost extends Component {
 							onChange={this.handleChange}
 							type="textarea"
 							name="content"
+							value={this.state.formData.content}
 							id="content"
 							required
 						/>
@@ -74,7 +85,7 @@ class EditPost extends Component {
 							type="text"
 							name="tags"
 							id="tags"
-							placeholder="Ears,Allergy,Rash,Paws - do not add spaces"
+							value={this.state.formData.tags}
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -83,6 +94,10 @@ class EditPost extends Component {
 							type="date"
 							name="date"
 							id="date"
+							value={format(
+								new Date(this.state.formData.date),
+								'yyyy-MM-dd'
+							)}
 							onChange={this.handleDateChange}
 						/>
 					</FormGroup>
@@ -92,7 +107,7 @@ class EditPost extends Component {
 							<Input
 								name="private"
 								onChange={this.handleCheckboxChange}
-								checked={this.state.private}
+								checked={this.state.formData.private}
 								type="checkbox"
 							/>{' '}
 							Private
@@ -104,7 +119,7 @@ class EditPost extends Component {
 							<Input
 								name="archive"
 								onChange={this.handleCheckboxChange}
-								checked={this.state.archive}
+								checked={this.state.formData.archive}
 								type="checkbox"
 							/>{' '}
 							Archive
@@ -117,5 +132,4 @@ class EditPost extends Component {
 		);
 	}
 }
-
 export default EditPost;
